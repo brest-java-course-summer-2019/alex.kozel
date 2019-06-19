@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d85a6e3d-4817-4e82-9306-95b2164d9a70" name="Default Changelist" comment="" />
+    <list default="true" id="d85a6e3d-4817-4e82-9306-95b2164d9a70" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -84,11 +86,6 @@
               <item name="alex.kozel" type="b2602c69:ProjectViewProjectNode" />
               <item name="alex.kozel" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="alex.kozel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="alex.kozel" type="462c0819:PsiDirectoryNode" />
-              <item name="Courses_student" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -99,6 +96,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Courses_student" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="SDKs" />
@@ -149,7 +147,7 @@
       <updated>1560189925864</updated>
       <workItem from="1560189927108" duration="242000" />
       <workItem from="1560352367006" duration="3998000" />
-      <workItem from="1560956948420" duration="495000" />
+      <workItem from="1560956948420" duration="869000" />
     </task>
     <task id="LOCAL-00001" summary="hi java">
       <created>1560190033719</created>
@@ -190,7 +188,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4735000" />
+    <option name="totallyTimeSpent" value="5109000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
