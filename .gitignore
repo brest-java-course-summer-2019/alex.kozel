@@ -15,6 +15,7 @@
 
 .idea/
 /.idea
+out/
 
 # Package Files #
 *.jar
