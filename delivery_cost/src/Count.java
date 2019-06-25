@@ -1,3 +1,5 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
@@ -11,17 +13,14 @@ public class Count {
 
     public Count() throws IOException {
         this.scanner = new Scanner(System.in);
-        this.properties = loadProperties();
+        this.properties = new Properties();
+
+        FileInputStream file = new FileInputStream("resurces/price.properties");
+        properties.load(file);
+
     }
 
-    private Properties loadProperties() throws IOException {
-        InputStream input = Main.class.getClassLoader().getResourceAsStream("price.properties");
-        Properties property = new Properties();
-        property.load(input);
-        return property;
-    }
-
-    public String getSum() {
+    public String getSum() throws IOException{
         System.out.println("Enter the weight in kilograms or 'q' to exit");
         BigDecimal weight = getValue();
 
@@ -50,14 +49,12 @@ public class Count {
         return value;
     }
 
-    private String sum(BigDecimal weight, BigDecimal distance) {
+    private String sum(BigDecimal weight, BigDecimal distance) throws IOException{
         BigDecimal pricePerKm;
-        BigDecimal pricePerKg = new BigDecimal(properties.getProperty("price.per.kg"));
-        if (distance.compareTo(new BigDecimal(100)) == 1) {
-            pricePerKm = new BigDecimal(properties.getProperty("lessthan100"));
-        } else {
-            pricePerKm = new BigDecimal(properties.getProperty("morethan100"));
-        }
+        BigDecimal pricePerKg;
+        pricePerKg = BigDecimal.valueOf(10);
+        if (distance.compareTo(BigDecimal.valueOf(100))==1)pricePerKm = BigDecimal.valueOf(Integer.parseInt(properties.getProperty("lessthan100")));
+        else pricePerKm = BigDecimal.valueOf(Integer.parseInt(properties.getProperty("morethan100")));
         return weight.multiply(pricePerKg).add(distance.multiply(pricePerKm)).toString();
     }
 }
