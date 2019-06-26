@@ -50,11 +50,14 @@ public class Count {
     }
 
     private String sum(BigDecimal weight, BigDecimal distance) throws IOException{
-        BigDecimal pricePerKm;
-        BigDecimal pricePerKg;
-        pricePerKg = BigDecimal.valueOf(10);
-        if (distance.compareTo(BigDecimal.valueOf(100))==1)pricePerKm = BigDecimal.valueOf(Integer.parseInt(properties.getProperty("lessthan100")));
-        else pricePerKm = BigDecimal.valueOf(Integer.parseInt(properties.getProperty("morethan100")));
+        BigDecimal pricePerKm ;
+        BigDecimal pricePerKg = BigDecimal.valueOf(10);
+        if (distance.compareTo(BigDecimal.valueOf(100)) == 1){
+            pricePerKm = new BigDecimal(properties.getProperty("lessthan100"));
+        }
+        else {
+            pricePerKm = new BigDecimal(properties.getProperty("morethan100"));
+        }
         return weight.multiply(pricePerKg).add(distance.multiply(pricePerKm)).toString();
     }
 }
