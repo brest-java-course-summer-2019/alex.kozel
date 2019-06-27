@@ -1,64 +1,89 @@
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import Action.CorrectValue;
+import Action.EnteredValue;
+import Action.ExitValue;
+import Action.InCorrectValue;
+import file.FileReader;
+import file.CSVFileReader;
+
 import java.io.IOException;
-import java.io.InputStream;
 import java.math.BigDecimal;
-import java.util.Properties;
+import java.util.Collections;
+import java.util.Map;
 import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.util.Set;
+
 
 public class Count {
 
-    private Scanner scanner;
-    private Properties properties;
 
-    public Count() throws IOException {
-        this.scanner = new Scanner(System.in);
-        this.properties = new Properties();
 
-        FileInputStream file = new FileInputStream("resurces/price.properties");
-        properties.load(file);
+    private static final String QUIT_SYMBOL = "q";
+    Scanner scanner = new Scanner(System.in);
+    String countId;
 
+
+    public String getValue(String countId) throws IOException {
+
+        this.countId = countId;
+
+        FileReader fileReader = new CSVFileReader();
+        Map<Integer, BigDecimal> loadedPrices = fileReader.readData("price_per_"+countId+".csv");
+        if (loadedPrices == null || loadedPrices.isEmpty()) {
+            throw new FileNotFoundException("File with prices per "+countId+" not found.");
+        }
+        System.out.println(loadedPrices);
+        int priceperkm;
+
+        //count diaposon
+        Set<Integer> keys = loadedPrices.keySet();
+        for (Integer key : keys) {
+            if ( < key) priceperkm = key;
+        }
+        System.out.println(priceperkm);
+
+
+
+
+
+        EnteredValue weightValue =
+                receiveValueFromConsole("Enter distance in km or 'q' for quit", scanner);
+        if (weightValue.getType() != EnteredValue.Types.EXIT) {
+            CorrectValue correctValue = (CorrectValue) weightValue;
+            return String.valueOf(correctValue.getValue());
+        }
+
+        return "Bye!";
     }
 
-    public String getSum() throws IOException{
-        System.out.println("Enter the weight in kilograms or 'q' to exit");
-        BigDecimal weight = getValue();
 
-        System.out.println("Enter the distance in kilometers or 'q' to exit");
-        BigDecimal distance = getValue();
-        return sum( weight, distance);
+    private EnteredValue receiveValueFromConsole(String message, Scanner scanner) {
+        EnteredValue enteredValue = new InCorrectValue();
+        while (enteredValue.getType() == EnteredValue.Types.INCORRECT) {
+            System.out.println(message);
+            enteredValue = parseInputValue(scanner.nextLine());
+        }
+        return enteredValue;
     }
 
-
-    private BigDecimal getValue() {
-        BigDecimal value = null;
-        String inputStream;
-        while (value == null) {
-            inputStream = scanner.nextLine();
-            if (!inputStream.toLowerCase().equals("q")) {
-                try {
-                    value = new BigDecimal(inputStream);
-                } catch (NumberFormatException e) {
-                    System.out.println("You entered wrong value, try again or enter 'q' to exit");
+    private EnteredValue parseInputValue(String inputValue) {
+        EnteredValue result = new ExitValue();
+        if (!inputValue.trim().toLowerCase().equals(QUIT_SYMBOL)) {
+            try {
+                BigDecimal value = new BigDecimal(inputValue);
+                if (value.compareTo(BigDecimal.ZERO) > 0) {
+                    result = new CorrectValue(new BigDecimal(inputValue));
+                } else {
+                    throw new IllegalArgumentException();
                 }
-            } else {
-                System.out.println("Buy");
-                break;
+            } catch (IllegalArgumentException e) {
+                System.out.format("Incorrect value: %s%n", inputValue);
+                result = new InCorrectValue();
             }
         }
-        return value;
+        return result;
     }
 
-    private String sum(BigDecimal weight, BigDecimal distance) throws IOException{
-        BigDecimal pricePerKm ;
-        BigDecimal pricePerKg = BigDecimal.valueOf(10);
-        if (distance.compareTo(BigDecimal.valueOf(100)) == 1){
-            pricePerKm = new BigDecimal(properties.getProperty("lessthan100"));
-        }
-        else {
-            pricePerKm = new BigDecimal(properties.getProperty("morethan100"));
-        }
-        return weight.multiply(pricePerKg).add(distance.multiply(pricePerKm)).toString();
-    }
+
 }
 
