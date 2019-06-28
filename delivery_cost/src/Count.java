@@ -33,18 +33,6 @@ public class Count {
             throw new FileNotFoundException("File with prices per "+countId+" not found.");
         }
         System.out.println(loadedPrices);
-        int priceperkm;
-
-        //count diaposon
-        Set<Integer> keys = loadedPrices.keySet();
-        for (Integer key : keys) {
-            if ( < key) priceperkm = key;
-        }
-        System.out.println(priceperkm);
-
-
-
-
 
         EnteredValue weightValue =
                 receiveValueFromConsole("Enter distance in km or 'q' for quit", scanner);
