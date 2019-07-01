@@ -2,7 +2,7 @@
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Set;
+import java.util.Scanner;
 
 
 public class Main {
@@ -10,28 +10,39 @@ public class Main {
 
     public static void main(String[] args) throws IOException{
 
-        Main main = new Main();
-        Count count = new Count();
-        CountResult countResult = new CountResult();
+        ValueFromKeyboard valueFromKeyboard = new ValueFromKeyboard();
+        ValueFromFile valueFromFile = new ValueFromFile();
+        Scanner decide = new Scanner(System.in);
+        String value1 = "kg";
+        String value2 = "km";
+        String answer = "y";
 
-        BigDecimal numberKg = new BigDecimal(count.getValue("kg"));
-        System.out.println(numberKg);
-        BigDecimal numberKm = new BigDecimal(count.getValue("km"));
-        System.out.println(numberKm);
-        BigDecimal pricePerKm = countResult.countPeriod(numberKm);
-        BigDecimal pricePerKg = countResult.countPeriod(numberKg);
+        while (answer.equals("y")) {
+
+            BigDecimal numberKg = new BigDecimal(valueFromKeyboard.getValue(value1));
+            System.out.println(numberKg);
+            BigDecimal numberKm = new BigDecimal(valueFromKeyboard.getValue(value2));
+            System.out.println(numberKm);
+            BigDecimal pricePerKg = valueFromFile.getValue(value1, numberKg);
+            BigDecimal pricePerKm = valueFromFile.getValue(value2, numberKm);
+
+            System.out.println("kg"+pricePerKg);
+            System.out.println("km"+pricePerKm);
+            BigDecimal m = sum(numberKg,numberKm, pricePerKg, pricePerKm);
+            System.out.println(m);
 
 
-        System.out.println(main.sum(numberKg, numberKm, pricePerKm, pricePerKg));
+            do {
+                System.out.println("Do you want to recount? --- y/n?");
+                answer = decide.nextLine();
+            } while  (!answer.equals("n") && !answer.equals("y"));
 
+            }
+        }
 
+    private static BigDecimal sum(BigDecimal weight, BigDecimal distance, BigDecimal pricePerKm, BigDecimal pricePerKg) throws IOException{
 
-
-
-    }
-    private String sum(BigDecimal weight, BigDecimal distance, BigDecimal pricePerKm, BigDecimal pricePerKg) throws IOException{
-
-        return weight.multiply(pricePerKg).add(distance.multiply(pricePerKm)).toString();
+        return weight.multiply(pricePerKg).add(distance.multiply(pricePerKm));
     }
 
 
