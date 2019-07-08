@@ -37,7 +37,7 @@
         <tr>
             <th scope="col-lg">#</th>
             <th scope="col">Course</th>
-            <th scope="col">Speacker</th>
+            <th scope="col">Speaker</th>
             <th scope="col">number of students</th>
             <th scope="col"></th>
         </tr>
@@ -52,8 +52,8 @@
                 <a class="btn" href="Course.html">
                     <img src="img/1.jpg" width="30" height="30" alt="edit" >
                 </a>
-                <a class="btn" href="#" >
-                    <img src="img/del.jpeg" width="30" height="30" alt="edit" >
+                <a class="btn" data-toggle="modal" data-target="#exampleModalCenter" >
+                    <img src="img/del.jpeg" width="30" height="30" alt="del" >
                 </a>
                 <a class="btn btn-info" href="Students.html">more</a>
             </td>
@@ -67,7 +67,7 @@
                 <a class="btn" href="Course.html">
                     <img src="img/1.jpg" width="30" height="30" alt="edit" >
                 </a>
-                <a class="btn" href="#" >
+                <a class="btn" data-toggle="modal" data-target="#exampleModalCenter" >
                     <img src="img/del.jpeg" width="30" height="30" alt="del" >
                 </a>
                 <a class="btn btn-info" href="Students.html">more</a>
@@ -82,8 +82,8 @@
                 <a class="btn" href="Course.html">
                     <img src="img/1.jpg" width="30" height="30" alt="edit" >
                 </a>
-                <a class="btn" href="#" >
-                    <img src="img/del.jpeg" width="30" height="30" alt="edit" >
+                <a class="btn" data-toggle="modal" data-target="#exampleModalCenter" >
+                    <img src="img/del.jpeg" width="30" height="30" alt="del" >
                 </a>
                 <a class="btn btn-info" href="Students.html">more</a>
             </td>
@@ -97,8 +97,8 @@
                 <a class="btn" href="Course.html">
                     <img src="img/1.jpg" width="30" height="30" alt="edit" >
                 </a>
-                <a class="btn" href="#" >
-                    <img src="img/del.jpeg" width="30" height="30" alt="edit" >
+                <a class="btn" data-toggle="modal" data-target="#exampleModalCenter" >
+                    <img src="img/del.jpeg" width="30" height="30" alt="del" >
                 </a>
                 <a class="btn btn-info" href="Students.html">more</a>
             </td>
@@ -107,6 +107,33 @@
     </table>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Delete course</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2>Are you sure?</h2>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" >YES</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" >NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <hr/>
+    <p class="text-center">&copy; 2019</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,76 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Student</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Edit student</title>
+
 </head>
 <body>
 
-<div class="container">
-    <nav class="navbar navbar-expand-sm navbar-light bg-light">
-        <ui class="nav-item">
-            <a class="nav-link " href="Students.html">Students</a>
-        </ui>
-        <ui class="nav-item">
-            <a class="nav-link" href="Courses.html">Courses</a>
-        </ui>
-    </nav>
-</div>
+<header>
+    <div class="container">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <ui class="nav-item">
+                <a class="nav-link " href="#">Students</a>
+            </ui>
+            <ui class="nav-item">
+                <a class="nav-link" href="Courses.html">Courses</a>
+            </ui>
+        </nav>
+    </div>
 
-<div class="container">
-    <h2>Activate Modal with JavaScript</h2>
-    <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" id="myBtn">Open Modal</button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                    <table>
-                        <thead>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>
-                                Дом
-                            </td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Квартира
-                            </td>
-                            <td></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+    <div class="container">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Course</label>
             </div>
-
+            <select class="custom-select" id="inputGroupSelect01">
+                <option selected>Choose course</option>
+                <option value="1">Math</option>
+                <option value="2">FA</option>
+                <option value="3">Dance</option>
+                <option value="4">Art</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label"
+                   for="student name">Student name</label>
+            <input class="form-control"
+                   id="student name"
+                   type="text"
+                   value="Mark Otto"/>
         </div>
     </div>
 
-</div>
+    <div class="container">
+    <a class="btn btn-success" href="Students.html">yes</a>
+    <a class="btn btn-danger" href="Students.html">no</a>
+    </div>
+<footer>
+    <hr/>
+    <p class="text-center">&copy; 2019</p>
+</footer>
 
-<script>
-$(document).ready(function(){
-    $("#myBtn").click(function(){
-        $("#myModal").modal();
-    });
-});
-</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
-<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
