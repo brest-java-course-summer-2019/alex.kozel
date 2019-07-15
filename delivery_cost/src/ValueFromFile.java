@@ -1,5 +1,5 @@
-import file.CSVFileReader;
-import file.FileReader;
+import  file.FileReader;
+import  file.CSVFileReader;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
