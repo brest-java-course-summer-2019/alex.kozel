@@ -17,11 +17,11 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-@Component
 /**
  *  Department DAO Interface implementation.
  */
-public class CourseDaoJdbcImpl implements CourseDao {
+@Component
+class CourseDaoJdbcImpl implements CourseDao {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 

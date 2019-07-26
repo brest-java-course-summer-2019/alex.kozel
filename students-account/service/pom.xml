@@ -16,11 +16,6 @@
     <dependencies>
         <dependency>
             <groupId>com.epam.brest.summer.courses2019</groupId>
-            <artifactId>model</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.epam.brest.summer.courses2019</groupId>
             <artifactId>dao</artifactId>
         </dependency>
         <dependency>
@@ -41,4 +36,13 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

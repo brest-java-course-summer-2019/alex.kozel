@@ -1,6 +1,5 @@
 package com.epam.brest.summer.courses2019.dao;
 
-import com.epam.brest.summer.courses2019.model.Course;
 import com.epam.brest.summer.courses2019.model.Student;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -20,8 +19,6 @@ import java.util.Optional;
  */
 @Component
 public class StudentDaoJdbcImpl implements StudentDao {
-
-    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     private final static String SELECT_ALL =
             "select student_id, student_name, date, course_id from student";
@@ -47,6 +44,7 @@ public class StudentDaoJdbcImpl implements StudentDao {
 
     private static final String COURSE_ID = "courseId";
     private static final String STUDENT_ID = "studentId";
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     public StudentDaoJdbcImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
@@ -63,7 +61,7 @@ public class StudentDaoJdbcImpl implements StudentDao {
     public List<Student> findByCourseId(Integer courseId) {
         SqlParameterSource namedParameters = new MapSqlParameterSource(COURSE_ID, courseId);
         List<Student> results = namedParameterJdbcTemplate.query(FIND_BY_COURSE_ID, namedParameters,
-                BeanPropertyRowMapper.newInstance(Course.class));
+                BeanPropertyRowMapper.newInstance(Student.class));
         return results;
     }
 

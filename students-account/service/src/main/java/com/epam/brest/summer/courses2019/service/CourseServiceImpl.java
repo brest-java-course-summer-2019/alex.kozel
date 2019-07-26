@@ -6,13 +6,13 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-    public class DepartmentServiceImpl implements CourseService {
+    public class CourseServiceImpl implements CourseService {
 
-        private static final Logger LOGGER = LoggerFactory.getLogger(DepartmentServiceImpl.class);
+        private static final Logger LOGGER = LoggerFactory.getLogger(CourseServiceImpl.class);
 
         private CourseDao dao;
 
-        public DepartmentServiceImpl(CourseDao dao) {
+        public CourseServiceImpl(CourseDao dao) {
             this.dao = dao;
         }
 
@@ -41,4 +41,3 @@ import org.slf4j.LoggerFactory;
             dao.delete(id);
         }
     }
-}
