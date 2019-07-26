@@ -5,7 +5,7 @@
 
     <artifactId>dao</artifactId>
 
-    <name>Human Resources DAO</name>
+    <name>Students Account DAO</name>
 
     <parent>
         <groupId>com.epam.brest.summer.courses2019</groupId>
@@ -81,3 +81,5 @@
 
 
 </project>
+
+
