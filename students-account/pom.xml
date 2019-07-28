@@ -14,10 +14,12 @@
 
   <modules>
     <module>model</module>
-    <module>dao</module>
-    <module>service</module>
-    <module>web-app</module>
     <module>test-db</module>
+    <module>web-app</module>
+    <!-- <module>dao</module>
+    <module>service</module>
+     -->
+
   </modules>
 
   <distributionManagement>
