@@ -12,9 +12,8 @@
 *.iml
 
 
-
-.idea/
-/.idea
+target
+.idea
 out/
 .target/
 
