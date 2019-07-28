@@ -26,7 +26,7 @@ class CourseDaoJdbcImpl implements CourseDao {
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     private final static String SELECT_ALL =
-            "select c.course_id, c.course_name from department d order by 2";
+            "select c.course_id, c.course_name from course c order by c.course_id";
 
     private static final String FIND_BY_ID =
             "select course_id, course_name from course where course_id = :courseId";
