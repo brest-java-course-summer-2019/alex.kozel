@@ -5,7 +5,7 @@
 
     <artifactId>service</artifactId>
 
-    <name>Human Resources Service</name>
+    <name>Students Account Service</name>
 
     <parent>
         <groupId>com.epam.brest.summer.courses2019</groupId>
