@@ -13,15 +13,12 @@ public class Student {
 
     private Integer courseId;
 
-    private Date date;
-
     public Student() {
     }
 
     public Student(String studentName, Date date, Integer courseId) {
         this.studentName = studentName;
         this.courseId = courseId;
-        this.date = date;
     }
 
     public Integer getStudentId() {
@@ -30,14 +27,6 @@ public class Student {
 
     public void setStudentId(Integer employeeId) {
         this.studentId = studentId;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public String getStudentName() {
@@ -61,7 +50,6 @@ public class Student {
         return "Student{"
                 + "studentId=" + studentId
                 + ", studentName='" + studentName + '\''
-                + ", Date='" + date + '\''
                 + ", courseId=" + courseId
                 + '}';
     }

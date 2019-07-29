@@ -41,9 +41,10 @@ public interface CourseDao {
     List<Course> findAll();
 
     /**
-     * Get Department By Id.
+     * Get Course By Id.
      *
      * @param courseId courseId
+     *
      * @return Course
      */
     Optional<Course> findById(Integer courseId);

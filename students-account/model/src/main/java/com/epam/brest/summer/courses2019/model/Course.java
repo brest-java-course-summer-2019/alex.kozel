@@ -1,5 +1,7 @@
 package com.epam.brest.summer.courses2019.model;
 
+import java.util.Date;
+
 /**
  * POJO Course for model.
  */
@@ -14,6 +16,11 @@ public class Course {
      * Course Name.
      */
     private String courseName;
+
+    /**
+     * Data Course begin.
+     */
+    private Date courseDate;
 
     /**
      * Constructor without arguments.
@@ -67,13 +74,33 @@ public class Course {
     }
 
     /**
+     * Returns <code>Date</code> representation of this courseDate.
+     *
+     * @return courseDate course Date.
+     */
+    public Date getCourseDate() {
+        return courseDate;
+    }
+
+    /**
+     * Sets the course's date.
+     *
+     * @return courseDate Course date.
+     */
+    public void setCourseDate(final Date courseDate) {
+        this.courseDate = courseDate;
+    }
+
+
+    /**
      * {@inheritDoc}
      */
     @Override
     public String toString() {
         return "Course{"
                 + "courseId=" + courseId
-                + ", departmentName='" + courseName
+                + ", courseName='" + courseName
+                + ", courseDate='" + courseDate
                 + '}';
     }
 }
