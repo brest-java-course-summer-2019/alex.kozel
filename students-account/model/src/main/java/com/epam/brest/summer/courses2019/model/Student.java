@@ -13,12 +13,15 @@ public class Student {
 
     private Integer courseId;
 
+    private Date dateCourseBegin;
+
     public Student() {
     }
 
-    public Student(String studentName, Date date, Integer courseId) {
+    public Student(String studentName, Date dateCourseBegin, Integer courseId) {
         this.studentName = studentName;
         this.courseId = courseId;
+        this.dateCourseBegin = dateCourseBegin;
     }
 
     public Integer getStudentId() {

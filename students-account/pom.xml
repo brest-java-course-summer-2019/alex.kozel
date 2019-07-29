@@ -184,7 +184,7 @@
           <configuration>
             <source>${maven.compiler.source}</source>
             <target>${maven.compiler.target}</target>
-            <useIncrementalCompilation><fa></fa>lse</useIncrementalCompilation>
+            <useIncrementalCompilation>false</useIncrementalCompilation>
           </configuration>
         </plugin>
 
