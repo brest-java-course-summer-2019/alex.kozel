@@ -16,9 +16,8 @@
     <module>model</module>
     <module>test-db</module>
     <module>web-app</module>
-    <!-- <module>dao</module>
+    <module>dao</module>
     <module>service</module>
-     -->
 
   </modules>
 
