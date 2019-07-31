@@ -1,6 +1,8 @@
 package com.epam.brest.summer.courses2019.dao;
 
 import com.epam.brest.summer.courses2019.model.Student;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -18,7 +20,7 @@ import java.util.Optional;
  * Employee DAO Interface implementation.
  */
 @Component
-public class StudentDaoJdbcImpl implements StudentDao {
+public class StudentDaoJdbcImpl implements StudentDao  {
 
     private final static String SELECT_ALL =
             "select student_id, student_name, date, course_id from student";

@@ -1,19 +1,22 @@
-?xml version="1.0" encoding="UTF-8"?>
-<configuration>
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd ">
 
-    <!-- Send debug messages to System.out -->
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
-        </encoder>
-    </appender>
 
-    <logger name="com.epam.courses.hr.dao" level="DEBUG" additivity="false">
-        <appender-ref ref="STDOUT" />
-    </logger>
 
-    <!-- By default, the level of the root level is set to DEBUG -->
-    <root level="DEBUG">
-        <appender-ref ref="STDOUT" />
-    </root>
-</configuration>
+    <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="courseDao" class="com.epam.brest.summer.courses2019.dao.CourseDaoJdbcImpl">
+        <constructor-arg name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+    </bean>
+
+    <bean id="studentDao" class="com.epam.brest.summer.courses2019.dao.StudentDaoJdbcImpl">
+        <constructor-arg name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+    </bean>
+
+
+</beans>

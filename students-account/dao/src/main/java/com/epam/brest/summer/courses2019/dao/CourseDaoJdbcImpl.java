@@ -26,7 +26,7 @@ class CourseDaoJdbcImpl implements CourseDao {
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     private final static String SELECT_ALL =
-            "select c.course_id, c.course_name from course c order by c.course_id";
+            "select c.course_id, c.course_name from course c order by 2";
 
     private static final String FIND_BY_ID =
             "select course_id, course_name from course where course_id = :courseId";
@@ -40,7 +40,7 @@ class CourseDaoJdbcImpl implements CourseDao {
     private static final String DELETE =
             "delete from course where course_id = :courseId";
 
-    private static final String COURSE_ID = "courseID";
+    private static final String COURSE_ID = "courseId";
 
     public CourseDaoJdbcImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
