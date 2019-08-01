@@ -1,9 +1,10 @@
+[![Coverage Status](https://coveralls.io/repos/github/brest-java-course-summer-2019/alex.kozel/badge.svg?branch=master)](https://coveralls.io/github/brest-java-course-summer-2019/alex.kozel?branch=master)
 [![Build Status](https://travis-ci.org/brest-java-course-summer-2019/alex.kozel.svg?branch=master)](https://travis-ci.org/brest-java-course-summer-2019/alex.kozel)
 
-[![Coverage Status](https://coveralls.io/repos/github/brest-java-course-summer-2019/alex.kozel/badge.svg?branch=master)](https://coveralls.io/github/brest-java-course-summer-2019/alex.kozel?branch=master)
-<br>
-</br>
-<b>Students Account Application</b>
+<br></br>
+Students Account Application
+
+
 
 Project for accounting students on different courses, include two entiteles: Courses and Students, related as many to many
 

@@ -1,4 +1,6 @@
+DROP TABLE IF EXISTS student;
 DROP TABLE IF EXISTS course;
+
 CREATE TABLE course (
   course_id INT NOT NULL AUTO_INCREMENT,
   course_name VARCHAR(255) NOT NULL UNIQUE,
@@ -6,7 +8,6 @@ CREATE TABLE course (
   PRIMARY KEY (course_id)
 );
 
-DROP TABLE IF EXISTS student;
 CREATE TABLE student (
   student_id INT NOT NULL AUTO_INCREMENT,
   student_name VARCHAR(255) NOT NULL,

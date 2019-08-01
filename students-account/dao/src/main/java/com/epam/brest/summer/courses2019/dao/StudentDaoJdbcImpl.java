@@ -18,29 +18,29 @@ import java.util.Optional;
  * Employee DAO Interface implementation.
  */
 @Component
-public class StudentDaoJdbcImpl implements StudentDao {
+public class StudentDaoJdbcImpl implements StudentDao  {
 
     private final static String SELECT_ALL =
-            "select student_id, student_name, date, course_id from student";
+            "select student_id, student_name, course_id from student";
 
     private static final String FIND_BY_ID =
-            "select student_id, student_name, date, course_id " +
+            "select student_id, student_name, course_id " +
                     "from student where student_id = :studentId";
 
     private static final String FIND_BY_COURSE_ID =
-            "select student_id, student_name, date, course_id " +
-                    "from employee where course_id = :courseId";
+            "select student_id, student_name, course_id " +
+                    "from student where course_id = :courseId";
 
     private final static String ADD_STUDENT =
-            "insert into student (student_name, date, course_id) " +
-                    "values (:studentName, :date, :courseId)";
+            "insert into student (student_name, course_id) " +
+                    "values (:studentName, :courseId)";
 
     private static final String UPDATE =
-            "update student set student_name = :studentName, date = :date, " +
-                    " course_id = :courseId where student_ud = :studentId";
+            "update student set student_name = :studentName, " +
+                    " course_id = :courseId where student_id = :studentId";
 
     private static final String DELETE =
-            "delete from employee where employee_id = :employeeId";
+            "delete from student where student_id = :studentId";
 
     private static final String COURSE_ID = "courseId";
     private static final String STUDENT_ID = "studentId";
