@@ -1,6 +1,6 @@
-INSERT INTO course (course_id, course_name, course_date) VALUES (1, 'DEV', DATE '1970-02-02');
-INSERT INTO course (course_id, course_name, course_date) VALUES (2, 'ACCOUNTING',  DATE '1970-02-02');
-INSERT INTO course (course_id, course_name, course_date) VALUES (3, 'MANAGEMENT',  DATE '1970-02-02');
+INSERT INTO course (course_id, course_name, course_date) VALUES (1, 'DEV', '1970-02-02');
+INSERT INTO course (course_id, course_name, course_date) VALUES (2, 'ACCOUNTING', '1970-02-02');
+INSERT INTO course (course_id, course_name, course_date) VALUES (3, 'MANAGEMENT', '1970-02-02');
 
 INSERT INTO student (student_id, student_name, course_id) VALUES (1, 'FUSER10', 1);
 INSERT INTO student (student_id, student_name, course_id) VALUES (2, 'FUSER11', 1);

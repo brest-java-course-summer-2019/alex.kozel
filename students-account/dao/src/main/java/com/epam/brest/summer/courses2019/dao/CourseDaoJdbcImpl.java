@@ -79,8 +79,8 @@ class CourseDaoJdbcImpl implements CourseDao {
 
     @Override
     public List<Course> findAll() {
-        List<Course> departments = namedParameterJdbcTemplate.query(SELECT_ALL, new CourseRowMapper());
-        return departments;
+        List<Course> courses = namedParameterJdbcTemplate.query(SELECT_ALL, new CourseRowMapper());
+        return courses;
     }
 
     @Override
