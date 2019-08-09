@@ -12,10 +12,10 @@ import java.util.Optional;
 public interface CourseDao {
 
     /**
-     * Persist new department.
+     * Persist new courses.
      *
      * @param course new course
-     * @return new department object.
+     * @return new course object.
      */
     Course add(Course course);
 
@@ -29,7 +29,7 @@ public interface CourseDao {
     /**
      * Delete course with specified id.
      *
-     * @param courseId department id
+     * @param courseId course id
      */
     void delete(Integer courseId);
 

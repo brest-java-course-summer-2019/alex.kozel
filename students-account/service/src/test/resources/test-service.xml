@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <tx:annotation-driven/>
+
+    <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="courseDao" class="com.epam.brest.summer.courses2019.dao.CourseDaoJdbcImpl">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
+
+    <bean id="courseService" class="com.epam.brest.summer.courses2019.service.CourseServiceImpl">
+        <constructor-arg ref="courseDao"/>
+    </bean>
+
+
+    <bean id="studentDao" class="com.epam.brest.summer.courses2019.dao.StudentDaoJdbcImpl">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
+
+    <bean id="studentService" class="com.epam.brest.summer.courses2019.service.StudentServiceImpl">
+        <constructor-arg ref="studentDao"/>
+    </bean>
+
+
+</beans>

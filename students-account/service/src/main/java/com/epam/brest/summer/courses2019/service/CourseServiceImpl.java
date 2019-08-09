@@ -40,4 +40,10 @@ import org.slf4j.LoggerFactory;
             LOGGER.debug("delete({})", id);
             dao.delete(id);
         }
+
+        @Override
+        public void add(Course... courses) {
+            LOGGER.debug("add({})");
+
+        }
     }
