@@ -13,7 +13,6 @@ import java.util.List;
  * Employee Service Interface implementation.
  */
 @Component
-@Transactional
 public class StudentServiceImpl implements StudentService {
 
 

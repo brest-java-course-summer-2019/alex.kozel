@@ -43,7 +43,8 @@ import org.slf4j.LoggerFactory;
 
         @Override
         public void add(Course... courses) {
-            LOGGER.debug("add({})");
-
+            for (Course course : courses) {
+                dao.add(course);
+            }
         }
     }
