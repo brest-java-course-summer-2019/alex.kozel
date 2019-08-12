@@ -49,18 +49,21 @@ public class CourseServiceImplTest {
     }
 
     @Test
-    void delete() {
-        int id = 3;
-        courseService.delete(id);
-        assertThrows(RuntimeException.class, () -> courseService.findById(id));
-    }
-
-    @Test
     void add() {
         long count = courseService.findAll().size();
         assertThrows(DuplicateKeyException.class, () -> courseService.add(create(), create()));
         long newCount = courseService.findAll().size();
         assertEquals(count, newCount);
+    }
+
+    @Test
+    void delete() {
+        Course course = new Course("Neo");
+        courseService.add(course);
+        List<Course> courses = courseService.findAll();
+        int sizeBefore = courses.size();
+        courseService.delete(course.getCourseId());
+        assertTrue((sizeBefore - 1) == courseService.findAll().size());
     }
 
     private Course create() {
