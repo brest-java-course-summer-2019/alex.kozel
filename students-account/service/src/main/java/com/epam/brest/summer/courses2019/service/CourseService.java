@@ -35,4 +35,6 @@ public interface CourseService {
      * @param id course id
      */
     void delete(int id);
+
+    void add(Course... courses);
 }

@@ -1,14 +1,13 @@
-package com.epam.brest.summer.courses2019.dao;
+package com.epam.brest.summer.courses2019.service;
 
 import com.epam.brest.summer.courses2019.model.Student;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
- * Student DAO Interface.
+ * Student service interface.
  */
-public interface StudentDao {
+public interface StudentService {
 
     /**
      * Get all students.
@@ -18,7 +17,7 @@ public interface StudentDao {
     List<Student> findAll();
 
     /**
-     * Get all student with specified course id.
+     * Get all students with specified course id.
      *
      * @param courseId course id
      * @return list of students by course id
@@ -31,7 +30,7 @@ public interface StudentDao {
      * @param studentId student id
      * @return student by id
      */
-    Optional<Student> findById(Integer studentId);
+    Student findById(Integer studentId);
 
     /**
      * Persist new student.
@@ -51,7 +50,7 @@ public interface StudentDao {
     /**
      * Delete student with specified id.
      *
-     * @param studentId course id
+     * @param studentId student id
      */
     void delete(Integer studentId);
 
