@@ -15,7 +15,7 @@ public interface CourseService {
     List<Course> findAll();
 
     /**
-     * Find Department By Id.
+     * Find course By Id.
      *
      * @param id id
      * @return Course
@@ -23,7 +23,7 @@ public interface CourseService {
     Course findById(Integer id);
 
     /**
-     * Update department.
+     * Update course.
      *
      * @param course course
      */
