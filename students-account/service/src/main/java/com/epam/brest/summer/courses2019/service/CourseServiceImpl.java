@@ -5,14 +5,19 @@ import com.epam.brest.summer.courses2019.model.Course;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
-    public class CourseServiceImpl implements CourseService {
+/**
+ * Student Service Interface implementation.
+ */
+@Component
+public class CourseServiceImpl implements CourseService {
 
-        private static final Logger LOGGER = LoggerFactory.getLogger(CourseServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CourseServiceImpl.class);
 
-        private CourseDao dao;
+    private CourseDao dao;
 
-        public CourseServiceImpl(CourseDao dao) {
+    public CourseServiceImpl(CourseDao dao) {
             this.dao = dao;
         }
 
@@ -47,4 +52,4 @@ import org.slf4j.LoggerFactory;
                 dao.add(course);
             }
         }
-    }
+}

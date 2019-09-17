@@ -77,6 +77,14 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.epam.brest.summer.courses2019</groupId>
+            <artifactId>model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.epam.brest.summer.courses2019</groupId>
+            <artifactId>service</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

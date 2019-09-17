@@ -37,4 +37,6 @@ public interface CourseService {
     void delete(int id);
 
     void add(Course... courses);
+
+    Course add(Course course);
 }

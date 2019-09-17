@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * Employee Service Interface implementation.
+ * Student Service Interface implementation.
  */
 @Component
 public class StudentServiceImpl implements StudentService {
