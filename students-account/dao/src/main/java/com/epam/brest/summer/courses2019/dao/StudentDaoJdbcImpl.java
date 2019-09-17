@@ -1,6 +1,7 @@
 package com.epam.brest.summer.courses2019.dao;
 
 import com.epam.brest.summer.courses2019.model.Student;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -15,32 +16,31 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Employee DAO Interface implementation.
+ * Student DAO Interface implementation.
  */
 @Component
 public class StudentDaoJdbcImpl implements StudentDao  {
 
-    private final static String SELECT_ALL =
-            "select student_id, student_name, course_id from student";
 
-    private static final String FIND_BY_ID =
-            "select student_id, student_name, course_id " +
-                    "from student where student_id = :studentId";
+    @Value("${student.findAll}")
+    private String findAllSql;
 
-    private static final String FIND_BY_COURSE_ID =
-            "select student_id, student_name, course_id " +
-                    "from student where course_id = :courseId";
+    @Value("${student.findById}")
+    private String findByIdSql;
 
-    private final static String ADD_STUDENT =
-            "insert into student (student_name, course_id) " +
-                    "values (:studentName, :courseId)";
+    @Value("${student.insert}")
+    private String insertSql;
 
-    private static final String UPDATE =
-            "update student set student_name = :studentName, " +
-                    " course_id = :courseId where student_id = :studentId";
+    @Value("${student.update}")
+    private String updateSql;
 
-    private static final String DELETE =
-            "delete from student where student_id = :studentId";
+    @Value("${student.delete}")
+    private String deleteSql;
+
+    @Value("${student.findByCourseId}")
+    private String findByCourseIdSql;
+
+
 
     private static final String COURSE_ID = "courseId";
     private static final String STUDENT_ID = "studentId";
@@ -53,14 +53,14 @@ public class StudentDaoJdbcImpl implements StudentDao  {
     @Override
     public List<Student> findAll() {
         List<Student> students =
-                namedParameterJdbcTemplate.query(SELECT_ALL, BeanPropertyRowMapper.newInstance(Student.class));
+                namedParameterJdbcTemplate.query(findAllSql, BeanPropertyRowMapper.newInstance(Student.class));
         return students;
     }
 
     @Override
     public List<Student> findByCourseId(Integer courseId) {
         SqlParameterSource namedParameters = new MapSqlParameterSource(COURSE_ID, courseId);
-        List<Student> results = namedParameterJdbcTemplate.query(FIND_BY_COURSE_ID, namedParameters,
+        List<Student> results = namedParameterJdbcTemplate.query(findByCourseIdSql, namedParameters,
                 BeanPropertyRowMapper.newInstance(Student.class));
         return results;
     }
@@ -68,7 +68,7 @@ public class StudentDaoJdbcImpl implements StudentDao  {
     @Override
     public Optional<Student> findById(Integer studentId) {
         SqlParameterSource namedParameters = new MapSqlParameterSource(STUDENT_ID, studentId);
-        List<Student> results = namedParameterJdbcTemplate.query(FIND_BY_ID, namedParameters,
+        List<Student> results = namedParameterJdbcTemplate.query(findByIdSql, namedParameters,
                 BeanPropertyRowMapper.newInstance(Student.class));
         return Optional.ofNullable(DataAccessUtils.uniqueResult(results));
     }
@@ -80,14 +80,14 @@ public class StudentDaoJdbcImpl implements StudentDao  {
         parameters.addValue("courseId", student.getCourseId());
 
         KeyHolder generatedKeyHolder = new GeneratedKeyHolder();
-        namedParameterJdbcTemplate.update(ADD_STUDENT, parameters, generatedKeyHolder);
+        namedParameterJdbcTemplate.update(insertSql, parameters, generatedKeyHolder);
         student.setStudentId(generatedKeyHolder.getKey().intValue());
         return student;
     }
 
     @Override
     public void update(Student student) {
-        Optional.of(namedParameterJdbcTemplate.update(UPDATE, new BeanPropertySqlParameterSource(student)))
+        Optional.of(namedParameterJdbcTemplate.update(updateSql, new BeanPropertySqlParameterSource(student)))
                 .filter(this::successfullyUpdated)
                 .orElseThrow(() -> new RuntimeException("Failed to update student in DB"));
     }
@@ -96,7 +96,7 @@ public class StudentDaoJdbcImpl implements StudentDao  {
     public void delete(Integer studentId) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue(STUDENT_ID, studentId);
-        Optional.of(namedParameterJdbcTemplate.update(DELETE, mapSqlParameterSource))
+        Optional.of(namedParameterJdbcTemplate.update(deleteSql, mapSqlParameterSource))
                 .filter(this::successfullyUpdated)
                 .orElseThrow(() -> new RuntimeException("Failed to delete student from DB"));
     }

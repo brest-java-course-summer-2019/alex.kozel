@@ -18,6 +18,7 @@
     <module>web-app</module>
     <module>dao</module>
     <module>service</module>
+      <module>rest-app</module>
 
   </modules>
 
@@ -79,6 +80,17 @@
         <version>${project.version}</version>
         <scope>test</scope>
       </dependency>
+      <dependency>
+        <groupId>com.epam.brest.summer.courses2019</groupId>
+        <artifactId>service</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.epam.brest.summer.courses2019</groupId>
+        <artifactId>web-app</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
 
 
       <dependency>

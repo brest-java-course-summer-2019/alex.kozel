@@ -1,6 +1,7 @@
 package com.epam.brest.summer.courses2019.dao;
 
 import com.epam.brest.summer.courses2019.model.Course;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
@@ -18,27 +19,27 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- *  Department DAO Interface implementation.
+ *  Course DAO Interface implementation.
  */
 @Component
 class CourseDaoJdbcImpl implements CourseDao {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    private final static String SELECT_ALL =
-            "select c.course_id, c.course_name from course c order by 2";
+    @Value("${course.findAll}")
+    private String findAllSql;
 
-    private static final String FIND_BY_ID =
-            "select course_id, course_name from course where course_id = :courseId";
+    @Value("${course.findById}")
+    private String findByIdSql;
 
-    private final static String ADD_COURSE =
-            "insert into course (course_name) values (:courseName)";
+    @Value("${course.insert}")
+    private String insertSql;
 
-    private static final String UPDATE =
-            "update course set course_name = :courseName where course_id = :courseId";
+    @Value("${course.update}")
+    private String updateSql;
 
-    private static final String DELETE =
-            "delete from course where course_id = :courseId";
+    @Value("${course.delete}")
+    private String deleteSql;
 
     private static final String COURSE_ID = "courseId";
 
@@ -52,14 +53,14 @@ class CourseDaoJdbcImpl implements CourseDao {
         parameters.addValue("courseName", course.getCourseName());
 
         KeyHolder generatedKeyHolder = new GeneratedKeyHolder();
-        namedParameterJdbcTemplate.update(ADD_COURSE, parameters, generatedKeyHolder);
+        namedParameterJdbcTemplate.update(insertSql, parameters, generatedKeyHolder);
         course.setCourseId(generatedKeyHolder.getKey().intValue());
         return course;
     }
 
     @Override
     public void update(Course course) {
-        Optional.of(namedParameterJdbcTemplate.update(UPDATE, new BeanPropertySqlParameterSource(course)))
+        Optional.of(namedParameterJdbcTemplate.update(updateSql, new BeanPropertySqlParameterSource(course)))
                 .filter(this::successfullyUpdated)
                 .orElseThrow(() -> new RuntimeException("Failed to update course in DB"));
     }
@@ -72,21 +73,21 @@ class CourseDaoJdbcImpl implements CourseDao {
     public void delete(Integer courseId) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue(COURSE_ID, courseId);
-        Optional.of(namedParameterJdbcTemplate.update(DELETE, mapSqlParameterSource))
+        Optional.of(namedParameterJdbcTemplate.update(deleteSql, mapSqlParameterSource))
                 .filter(this::successfullyUpdated)
                 .orElseThrow(() -> new RuntimeException("Failed to delete course from DB"));
     }
 
     @Override
     public List<Course> findAll() {
-        List<Course> courses = namedParameterJdbcTemplate.query(SELECT_ALL, new CourseRowMapper());
+        List<Course> courses = namedParameterJdbcTemplate.query(findAllSql, new CourseRowMapper());
         return courses;
     }
 
     @Override
     public Optional<Course> findById(Integer courseId) {
         SqlParameterSource namedParameters = new MapSqlParameterSource(COURSE_ID, courseId);
-        List<Course> results = namedParameterJdbcTemplate.query(FIND_BY_ID, namedParameters,
+        List<Course> results = namedParameterJdbcTemplate.query(findByIdSql, namedParameters,
                 BeanPropertyRowMapper.newInstance(Course.class));
         return Optional.ofNullable(DataAccessUtils.uniqueResult(results));
     }
