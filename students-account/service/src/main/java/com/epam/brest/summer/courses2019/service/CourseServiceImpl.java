@@ -52,4 +52,9 @@ public class CourseServiceImpl implements CourseService {
                 dao.add(course);
             }
         }
+
+    @Override
+    public Course add(Course course) {
+        return dao.add(course);
+    }
 }

@@ -20,7 +20,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.epam.brest.summer.course2019</groupId>
+            <groupId>com.epam.brest.summer.courses2019</groupId>
             <artifactId>service</artifactId>
         </dependency>
 

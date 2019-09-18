@@ -21,6 +21,8 @@ import java.util.Optional;
 @Component
 public class StudentDaoJdbcImpl implements StudentDao  {
 
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
 
     @Value("${student.findAll}")
     private String findAllSql;
@@ -44,7 +46,6 @@ public class StudentDaoJdbcImpl implements StudentDao  {
 
     private static final String COURSE_ID = "courseId";
     private static final String STUDENT_ID = "studentId";
-    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     public StudentDaoJdbcImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;

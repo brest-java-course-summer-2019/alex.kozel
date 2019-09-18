@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS student;
-DROP TABLE IF EXISTS course;
+DROP TABLE IF EXISTS students;
+DROP TABLE IF EXISTS courses;
 
 CREATE TABLE courses (
   course_id INT NOT NULL AUTO_INCREMENT,
@@ -13,5 +13,5 @@ CREATE TABLE students (
   student_name VARCHAR(255) NOT NULL,
   course_id INT NOT NULL,
   PRIMARY KEY (student_id),
-  FOREIGN KEY (course_id) REFERENCES course(course_id)
+  FOREIGN KEY (course_id) REFERENCES courses(course_id)
 );

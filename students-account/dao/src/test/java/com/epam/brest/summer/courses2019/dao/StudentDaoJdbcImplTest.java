@@ -52,7 +52,7 @@ public class StudentDaoJdbcImplTest {
     public void addStudent(){
         List<Student> students = studentDao.findAll();
         int sizeBefore = students.size();
-        Student student = new Student(NAME, COURSEID);
+        Student student = new Student("vova", COURSEID);
         Student newStudent = studentDao.add(student);
         assertNotNull(newStudent.getStudentId());
         assertEquals(newStudent.getCourseId(), student.getCourseId());
