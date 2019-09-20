@@ -3,6 +3,7 @@ package com.epam.brest.summer.courses2019.service;
 
 import com.epam.brest.summer.courses2019.model.Course;
 
+import java.util.Date;
 import java.util.List;
 
 public interface CourseService {
@@ -15,7 +16,7 @@ public interface CourseService {
     List<Course> findAll();
 
     /**
-     * Find Department By Id.
+     * Find course By Id.
      *
      * @param id id
      * @return Course
@@ -23,7 +24,7 @@ public interface CourseService {
     Course findById(Integer id);
 
     /**
-     * Update department.
+     * Update course.
      *
      * @param course course
      */
@@ -37,4 +38,16 @@ public interface CourseService {
     void delete(int id);
 
     void add(Course... courses);
+
+    /**
+     * Filter courses by date
+     *
+     * @param fromDate
+     * @param toDate
+     *
+     * @return list of filtered courses
+     */
+    List<Course> filterCourseByDate(Date fromDate, Date toDate);
+
+    Course add(Course course);
 }

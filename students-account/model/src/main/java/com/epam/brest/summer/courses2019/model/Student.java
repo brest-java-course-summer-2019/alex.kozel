@@ -23,6 +23,12 @@ public class Student {
     public Student() {
     }
 
+    /**
+     * Constructor with parameters
+     * @param studentName
+     * @param courseId
+     */
+
     public Student(String studentName, Integer courseId) {
         this.studentName = studentName;
         this.courseId = courseId;

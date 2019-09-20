@@ -1,49 +1,32 @@
 package com.epam.brest.summer.courses2019.model;
 
-import java.util.Date;
-import org.springframework.format.annotation.DateTimeFormat;
-
 /**
- * POJO Course for model.
+ * POJO Department for model.
  */
-public class Course {
+public class CourseAgregate {
 
-    /**
-     * Course Id.
-     */
     private Integer courseId;
 
-    /**
-     * Course Name.
-     */
     private String courseName;
 
-    /**
-     * Data Course begin.
-     */
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date courseDate;
+    private Integer studentSum;
 
     /**
      * Constructor without arguments.
      */
-    public Course() {
+    public CourseAgregate() {
     }
 
     /**
      * Constructor with department name.
-     *
      * @param courseName course name
-     * @param courseDate course date
      */
-    public Course(String courseName, Date courseDate) {
-        this.courseDate = courseDate;
+    public CourseAgregate(String courseName) {
         this.courseName = courseName;
     }
 
     /**
      * Returns <code>Integer</code> representation of this courseId.
-     *
      * @return courseId Course Id.
      */
     public Integer getCourseId() {
@@ -52,8 +35,7 @@ public class Course {
 
     /**
      * Sets the course's identifier.
-     *
-     * @param courseId Course Id.
+     * @param courseId course Id.
      */
     public void setCourseId(final Integer courseId) {
         this.courseId = courseId;
@@ -61,7 +43,6 @@ public class Course {
 
     /**
      * Returns <code>String</code> representation of this courseName.
-     *
      * @return courseName Course Name.
      */
     public String getCourseName() {
@@ -70,41 +51,40 @@ public class Course {
 
     /**
      * Sets the course's name.
-     *
-     * @param courseName Department Name.
+     * @param courseName Course Name.
      */
     public void setCourseName(final String courseName) {
         this.courseName = courseName;
     }
 
     /**
-     * Returns <code>Date</code> representation of this courseDate.
+     * Returns <code>Integer</code> representation of count of students
+     * in a course.
      *
-     * @return courseDate course Date.
+     * @return studentSum.
      */
-    public Date getCourseDate() {
-        return courseDate;
+    public Integer getStudentSum() {
+        return studentSum;
     }
 
     /**
-     * Sets the course's date.
+     * Sets the course's count of students.
      *
-     * @param  courseDate Course date.
+     * @param studentSum Average salary.
      */
-    public void setCourseDate(final Date courseDate) {
-        this.courseDate = courseDate;
+    public void setStudentSum(final Integer studentSum) {
+        this.studentSum = studentSum;
     }
-
 
     /**
      * {@inheritDoc}
      */
     @Override
     public String toString() {
-        return "Course{"
-                + "courseId=" + courseId
-                + ", courseName='" + courseName
-                + ", courseDate='" + courseDate
+        return "CourseAgregate{"
+                + "CourseId=" + courseId
+                + ", courseName='" + courseName + '\''
+                + ", studentSum=" + studentSum
                 + '}';
     }
 }

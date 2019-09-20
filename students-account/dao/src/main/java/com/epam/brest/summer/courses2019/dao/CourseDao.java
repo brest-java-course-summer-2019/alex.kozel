@@ -3,6 +3,7 @@ package com.epam.brest.summer.courses2019.dao;
 import com.epam.brest.summer.courses2019.model.Course;
 
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,4 +50,5 @@ public interface CourseDao {
      */
     Optional<Course> findById(Integer courseId);
 
+    List<Course> filterCourseByDate(Date fromDate, Date toDate);
 }
