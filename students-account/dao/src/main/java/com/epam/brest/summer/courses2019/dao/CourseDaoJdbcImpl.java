@@ -1,6 +1,7 @@
 package com.epam.brest.summer.courses2019.dao;
 
 import com.epam.brest.summer.courses2019.model.Course;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -15,14 +16,18 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import org.slf4j.Logger;
 
 /**
  *  Course DAO Interface implementation.
  */
 @Component
-class CourseDaoJdbcImpl implements CourseDao {
+public class CourseDaoJdbcImpl implements CourseDao {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CourseDaoJdbcImpl.class);
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -41,7 +46,21 @@ class CourseDaoJdbcImpl implements CourseDao {
     @Value("${course.delete}")
     private String deleteSql;
 
+    @Value("${course.filter}")
+    private String filterSql;
+
+    /**
+     * Columns in DB table Courses.
+     */
+    private static final String COURSE_NAME = "courseName";
     private static final String COURSE_ID = "courseId";
+    private static final String COURSE_DATE = "courseDate";
+
+    /**
+     * Date filter for SQL query.
+     */
+    private static final String FROM_DATE = "fromDate";
+    private static final String TO_DATE = "toDate";
 
     public CourseDaoJdbcImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
@@ -50,7 +69,8 @@ class CourseDaoJdbcImpl implements CourseDao {
     @Override
     public Course add(Course course) {
         MapSqlParameterSource parameters = new MapSqlParameterSource();
-        parameters.addValue("courseName", course.getCourseName());
+        parameters.addValue(COURSE_NAME, course.getCourseName());
+        parameters.addValue(COURSE_DATE, course.getCourseDate());
 
         KeyHolder generatedKeyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(insertSql, parameters, generatedKeyHolder);
@@ -92,14 +112,23 @@ class CourseDaoJdbcImpl implements CourseDao {
         return Optional.ofNullable(DataAccessUtils.uniqueResult(results));
     }
 
-    private class CourseRowMapper implements RowMapper<Course> {
+    private class CourseRowMapper implements RowMapper<Course>{
         @Override
-        public Course mapRow(ResultSet resultSet, int i) throws SQLException {
+        public Course mapRow(ResultSet resultSet, int i) throws SQLException{
             Course course = new Course();
-            course.setCourseId(resultSet.getInt("course_id"));
+            course.setCourseId(resultSet.getInt("course_Id"));
             course.setCourseName(resultSet.getString("course_name"));
+            course.setCourseDate(resultSet.getDate("course_date"));
             return course;
         }
     }
 
+    @Override
+    public List<Course> filterCourseByDate(Date fromDate, Date toDate) {
+        LOGGER.debug("filterDeviceByDate({}, {})", fromDate, toDate);
+        SqlParameterSource namedParamets = new MapSqlParameterSource().addValue(FROM_DATE, fromDate).addValue(TO_DATE, toDate);
+        List<Course> courses = namedParameterJdbcTemplate.query(filterSql, namedParamets, new CourseRowMapper());
+        LOGGER.debug("filteredCourses({})");
+        return courses;
+    }
 }

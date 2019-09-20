@@ -21,5 +21,9 @@
         <constructor-arg name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
     </bean>
 
+    <bean id="courseAgregateDao" class="com.epam.brest.summer.courses2019.dao.CourseAgregateDaoJdbcImpl" >
+       <constructor-arg name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate" />
+    </bean>
+
 
 </beans>

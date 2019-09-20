@@ -2,7 +2,6 @@ package com.epam.brest.summer.courses2019.rest_app;
 
 import com.epam.brest.summer.courses2019.model.Course;
 import com.epam.brest.summer.courses2019.service.CourseService;
-import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
