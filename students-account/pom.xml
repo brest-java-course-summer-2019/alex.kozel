@@ -15,10 +15,10 @@
   <modules>
     <module>model</module>
     <module>test-db</module>
-    <module>web-app</module>
     <module>dao</module>
     <module>service</module>
-      <module>rest-app</module>
+    <module>rest-app</module>
+    <module>web-app</module>
 
   </modules>
 

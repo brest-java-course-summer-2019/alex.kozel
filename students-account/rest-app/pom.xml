@@ -7,7 +7,7 @@
 
     <artifactId>rest-app</artifactId>
 
-    <name>Students Account Rest server</name>
+    <name>Students Account Rest App</name>
 
     <packaging>war</packaging>
 
