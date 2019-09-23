@@ -37,8 +37,6 @@ public interface CourseService {
      */
     void delete(int id);
 
-    void add(Course... courses);
-
     /**
      * Filter courses by date
      *

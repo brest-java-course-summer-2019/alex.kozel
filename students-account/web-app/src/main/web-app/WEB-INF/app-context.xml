@@ -30,7 +30,12 @@
     <!--        <constructor-arg name="dataSource" ref="dataSource"/>-->
     <!--    </bean>-->
 
-    <bean id="departmentService" class="com.epam.brest.summer.courses2019.web_app.consumers.DepartmentRestConsumer">
+    <bean id="courseService" class="com.epam.brest.summer.courses2019.web_app.consumers.CourseRestConsumer">
+        <constructor-arg index="0" value="${protocol}://${host}:${port}/${point.departments}"/>
+        <constructor-arg index="1" ref="restTemplate"/>
+    </bean>
+
+    <bean id="studentService" class="com.epam.brest.summer.courses2019.web_app.consumers.StudentRestConsumer">
         <constructor-arg index="0" value="${protocol}://${host}:${port}/${point.departments}"/>
         <constructor-arg index="1" ref="restTemplate"/>
     </bean>
@@ -43,6 +48,17 @@
         </property>
     </bean>
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/*" />
+            <ref bean="localeChangeInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="lang"/>
+    </bean>
+
     <!-- Thymeleaf Template Resolver -->
     <bean id="templateResolver"
           class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
@@ -52,6 +68,10 @@
         <!-- Template cache is true by default. Set to false if you want             -->
         <!-- templates to be automatically updated when modified.                    -->
         <property name="cacheable" value="false" />
+    </bean>
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="en" />
     </bean>
 
     <!-- Thymeleaf Template Engine (Spring5-specific version) -->

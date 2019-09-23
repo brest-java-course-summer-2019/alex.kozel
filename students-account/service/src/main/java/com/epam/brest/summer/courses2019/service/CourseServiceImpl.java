@@ -49,13 +49,6 @@ public class CourseServiceImpl implements CourseService {
             courseDao.delete(id);
         }
 
-        @Override
-        public void add(Course... courses) {
-            for (Course course : courses) {
-                courseDao.add(course);
-            }
-        }
-
     @Override
     public List<Course> filterCourseByDate(Date fromDate, Date toDate) throws DataAccessException {
         LOGGER.debug("filterCourseByDate({}, {})", fromDate, toDate);

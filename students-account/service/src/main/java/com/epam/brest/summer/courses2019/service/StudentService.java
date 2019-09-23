@@ -1,5 +1,6 @@
 package com.epam.brest.summer.courses2019.service;
 
+import com.epam.brest.summer.courses2019.model.CourseAgregate;
 import com.epam.brest.summer.courses2019.model.Student;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public interface StudentService {
      * @param courseId course id
      * @return list of students by course id
      */
-    List<Student> findByCourseId(Integer courseId);
+    List<CourseAgregate> findByCourseId(Integer courseId);
 
     /**
      * Get student with specified id.

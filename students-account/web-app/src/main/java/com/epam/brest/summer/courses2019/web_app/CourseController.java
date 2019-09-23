@@ -12,9 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.thymeleaf.util.StringUtils;
 
 import javax.validation.Valid;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Course controller
@@ -31,7 +33,7 @@ public class CourseController {
     private CourseValidator courseValidator;
 
     /**
-     * Goto course list ppage
+     * Goto course list page
      *
      * @param model spring model class
      *
@@ -86,11 +88,40 @@ public class CourseController {
         }
     }
 
+    /**
+     * Delete course
+     *
+     * @param id
+     * @param model
+     * @return view name
+     *
+     * @throws Exception
+     */
     @GetMapping(value = "/course/{id}/delete")
     public final String deleteCourseById(@PathVariable Integer id, Model model)
         throws Exception {
-
+        LOGGER.debug("delete({}, {})", id, model);
+        courseService.delete(id);
+        return "redirect:/courses";
     }
 
-
+    /**
+     * filter courses by date
+     * @param fromDate
+     * @param toDate
+     * @param model
+     * @return - path
+     *
+     * @throws ParseException
+     */
+    @GetMapping(value = "/courses/{fromDate}/{toDate}")
+    public String filterCoursesByDate(@PathVariable String fromDate, @PathVariable String toDate, Model model)
+        throws ParseException{
+        LOGGER.debug("filterCoursesByDate({} - {})", fromDate, toDate);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat( "yyyy-MM-dd");
+        Date startDate = simpleDateFormat.parse(fromDate);
+        Date endDate = simpleDateFormat.parse(toDate);
+        model.addAttribute("courses", courseService.filterCourseByDate(startDate, endDate));
+        return  "devices";
+    }
 }
