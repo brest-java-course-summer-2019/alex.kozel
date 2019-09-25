@@ -23,6 +23,7 @@ public class CourseRestController {
     @Autowired
     private CourseService courseService;
 
+
     @GetMapping(value ="/courses")
     public Collection<Course> findAll(){
         LOGGER.debug("get all courses");
@@ -49,7 +50,7 @@ public class CourseRestController {
         courseService.delete(id);
     }
 
-    @PostMapping(value = "/clients")
+    @PostMapping(value = "/courses")
     @ResponseStatus(HttpStatus.CREATED)
     public Course add(@RequestBody Course course){
         LOGGER.debug("add course({})", course);

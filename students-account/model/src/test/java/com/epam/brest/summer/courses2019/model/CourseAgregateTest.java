@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 public class CourseAgregateTest {
 
-    CourseAgregate agregate = new CourseAgregate();
+    CountStudentsOnCourse agregate = new CountStudentsOnCourse();
 
     Integer sum = 15;
     Integer courseId = 1;
@@ -13,8 +13,8 @@ public class CourseAgregateTest {
 
     @Test
     public void getStudentSum(){
-        agregate.setStudentSum(15);
-        Assert.assertEquals(agregate.getStudentSum(), sum);
+        agregate.setCountOfStudents(15);
+        Assert.assertEquals(agregate.getCountOfStudents(), sum);
     }
 
     @Test

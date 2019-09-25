@@ -7,5 +7,3 @@ INSERT INTO students (student_id, student_name, course_id) VALUES (2, 'FUSER11',
 INSERT INTO students (student_id, student_name, course_id) VALUES (3, 'FUSER12', 1);
 INSERT INTO students (student_id, student_name, course_id) VALUES (4, 'FUSER13', 2);
 INSERT INTO students (student_id, student_name, course_id) VALUES (5, 'FUSER14', 2);
-
-

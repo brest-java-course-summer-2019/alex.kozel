@@ -1,5 +1,6 @@
 package com.epam.brest.summer.courses2019.web_app.consumers;
 
+import com.epam.brest.summer.courses2019.model.CountStudentsOnCourse;
 import com.epam.brest.summer.courses2019.model.Course;
 import com.epam.brest.summer.courses2019.service.CourseService;
 import com.epam.brest.summer.courses2019.web_app.ServerDataAccessExeption;
@@ -30,6 +31,13 @@ public class CourseRestConsumer implements CourseService {
         LOGGER.debug("Find all courses");
         ResponseEntity<List> responseEntity = restTemplate.getForEntity(url, List.class);
         return (List<Course>) responseEntity.getBody();
+    }
+
+    @Override
+    public List<CountStudentsOnCourse> countStudentsOnCourse() {
+        LOGGER.debug("CountStudentsOnCourse");
+        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/with-count", List.class);
+        return (List<CountStudentsOnCourse>) responseEntity.getBody();
     }
 
     @Override

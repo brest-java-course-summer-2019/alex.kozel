@@ -78,10 +78,20 @@
 
     <build>
         <plugins>
-            <!-- Embedded Jetty HTTP Server for testing web application -->
+            <!-- Embedded Jetty HTTP Server for testing war application -->
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.19.v20190610</version>
+                <configuration>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <webApp>
+                        <contextPath>/</contextPath>
+                    </webApp>
+                    <httpConnector>
+                        <port>8090</port>
+                    </httpConnector>
+                </configuration>
             </plugin>
         </plugins>
     </build>

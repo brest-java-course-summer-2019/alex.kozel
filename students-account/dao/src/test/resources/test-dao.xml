@@ -13,6 +13,11 @@
         <constructor-arg name="dataSource" ref="dataSource"/>
     </bean>
 
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
     <bean id="courseDao" class="com.epam.brest.summer.courses2019.dao.CourseDaoJdbcImpl">
         <constructor-arg name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
     </bean>
@@ -21,9 +26,8 @@
         <constructor-arg name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
     </bean>
 
-    <bean id="courseAgregateDao" class="com.epam.brest.summer.courses2019.dao.CourseAgregateDaoJdbcImpl" >
+    <bean id="countStudentsOnCourseDao" class="com.epam.brest.summer.courses2019.dao.CountStudentsOnCourseDaoJdbcImpl" >
        <constructor-arg name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate" />
     </bean>
-
 
 </beans>

@@ -1,6 +1,5 @@
 package com.epam.brest.summer.courses2019.web_app.consumers;
 
-import com.epam.brest.summer.courses2019.model.CourseAgregate;
 import com.epam.brest.summer.courses2019.model.Student;
 import com.epam.brest.summer.courses2019.service.StudentService;
 import com.epam.brest.summer.courses2019.web_app.ServerDataAccessExeption;
@@ -39,10 +38,10 @@ public class StudentRestConsumer implements StudentService {
     }
 
     @Override
-    public List<CourseAgregate> findByCourseId(Integer courseId) throws DataAccessException{
+    public List<Student> findByCourseId(Integer courseId) throws DataAccessException{
         LOGGER.debug("Find students by course id({})", courseId);
         ResponseEntity responseEntity = restTemplate.getForEntity(url + "/{courseId}", List.class);
-        return (List<CourseAgregate>) responseEntity.getBody();
+        return (List<Student>) responseEntity.getBody();
     }
 
     @Override

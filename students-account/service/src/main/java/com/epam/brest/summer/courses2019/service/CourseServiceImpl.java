@@ -1,6 +1,8 @@
 package com.epam.brest.summer.courses2019.service;
 
+import com.epam.brest.summer.courses2019.dao.CountStudentsOnCourseDao;
 import com.epam.brest.summer.courses2019.dao.CourseDao;
+import com.epam.brest.summer.courses2019.model.CountStudentsOnCourse;
 import com.epam.brest.summer.courses2019.model.Course;
 
 import java.util.Date;
@@ -20,6 +22,8 @@ public class CourseServiceImpl implements CourseService {
 
     private CourseDao courseDao;
 
+    private CountStudentsOnCourseDao countStudentsOnCourseDao;
+
     public CourseServiceImpl(CourseDao dao) {
             this.courseDao = dao;
         }
@@ -30,10 +34,18 @@ public class CourseServiceImpl implements CourseService {
             return courseDao.findAll();
         }
 
+
+        @Override
+        public List<CountStudentsOnCourse> countStudentsOnCourse()
+                throws DataAccessException{
+        LOGGER.debug("Count students on course");
+        return countStudentsOnCourseDao.countStudentsOnCourse();
+        }
+
         @Override
         public Course findById(Integer id) {
-            LOGGER.debug("findById({})", id);
-            return courseDao.findById(id)
+        LOGGER.debug("findById({})", id);
+        return courseDao.findById(id)
                     .orElseThrow(() -> new RuntimeException("Failed to get courses from DB"));
         }
 
@@ -49,8 +61,8 @@ public class CourseServiceImpl implements CourseService {
             courseDao.delete(id);
         }
 
-    @Override
-    public List<Course> filterCourseByDate(Date fromDate, Date toDate) throws DataAccessException {
+        @Override
+        public List<Course> filterCourseByDate(Date fromDate, Date toDate) throws DataAccessException {
         LOGGER.debug("filterCourseByDate({}, {})", fromDate, toDate);
         return courseDao.filterCourseByDate(fromDate, toDate);
     }

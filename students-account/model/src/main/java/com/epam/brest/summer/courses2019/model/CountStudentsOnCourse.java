@@ -3,25 +3,25 @@ package com.epam.brest.summer.courses2019.model;
 /**
  * POJO Department for model.
  */
-public class CourseAgregate {
+public class CountStudentsOnCourse {
 
     private Integer courseId;
 
     private String courseName;
 
-    private Integer studentSum;
+    private Integer countOfStudents;
 
     /**
      * Constructor without arguments.
      */
-    public CourseAgregate() {
+    public CountStudentsOnCourse() {
     }
 
     /**
      * Constructor with department name.
      * @param courseName course name
      */
-    public CourseAgregate(String courseName) {
+    public CountStudentsOnCourse(String courseName) {
         this.courseName = courseName;
     }
 
@@ -63,17 +63,17 @@ public class CourseAgregate {
      *
      * @return studentSum.
      */
-    public Integer getStudentSum() {
-        return studentSum;
+    public Integer getCountOfStudents() {
+        return countOfStudents;
     }
 
     /**
      * Sets the course's count of students.
      *
-     * @param studentSum Average salary.
+     * @param countOfStudents Average salary.
      */
-    public void setStudentSum(final Integer studentSum) {
-        this.studentSum = studentSum;
+    public void setCountOfStudents(final Integer countOfStudents) {
+        this.countOfStudents = countOfStudents;
     }
 
     /**
@@ -81,10 +81,10 @@ public class CourseAgregate {
      */
     @Override
     public String toString() {
-        return "CourseAgregate{"
+        return "CountStudentsOnCourse{"
                 + "CourseId=" + courseId
                 + ", courseName='" + courseName + '\''
-                + ", studentSum=" + studentSum
+                + ", countOfStudents=" + countOfStudents
                 + '}';
     }
 }

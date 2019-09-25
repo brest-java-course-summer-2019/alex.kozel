@@ -3,6 +3,7 @@ package com.epam.brest.summer.courses2019.web_app;
 import com.epam.brest.summer.courses2019.model.Course;
 import com.epam.brest.summer.courses2019.service.CourseService;
 import com.epam.brest.summer.courses2019.web_app.validators.CourseValidator;
+import org.springframework.dao.DataAccessException;
 import org.springframework.validation.BindingResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,6 +49,22 @@ public class CourseController {
     return "courses";
     }
 
+    @PostMapping(value = "/course")
+    public final String addCourse(@Valid Course courseAdd, BindingResult result, Model model)
+            throws DataAccessException{
+        LOGGER.debug("postAddCourse({}, {})", courseAdd, result);
+        courseValidator.validate(courseAdd, result);
+        if(result.hasErrors()) {
+            model.addAttribute("course", courseAdd);
+            model.addAttribute("isNew", true );
+            return "course";
+        } else {
+            this.courseService.add(courseAdd);
+            return "redirect:/courses";
+        }
+
+    }
+
     /**
      * Goto edit client page
      *
@@ -78,6 +95,7 @@ public class CourseController {
     public String updateCourse(@Valid Course course, BindingResult result, Model model)
         throws Exception {
         LOGGER.debug("updateCourse({}, {})", course, model);
+        courseValidator.validate(course, result);
         if (result.hasErrors()) {
             model.addAttribute("course", course);
             model.addAttribute("isNew", false);

@@ -1,6 +1,5 @@
 package com.epam.brest.summer.courses2019.service;
 
-import com.epam.brest.summer.courses2019.model.CourseAgregate;
 import com.epam.brest.summer.courses2019.model.Student;
 import com.epam.brest.summer.courses2019.dao.StudentDao;
 import org.slf4j.Logger;
@@ -20,7 +19,6 @@ public class StudentServiceImpl implements StudentService {
 
     private StudentDao studentDao;
 
-    private CourseAgregate courseAgregate;
 
     public StudentServiceImpl(StudentDao studentDao) {
         this.studentDao = studentDao;
@@ -28,15 +26,16 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> findAll() {
-        LOGGER.debug("Find all employees");
+        LOGGER.debug("Find all students");
         return studentDao.findAll();
     }
 
     @Override
-    public List<CourseAgregate> findByCourseId(Integer courseId) {
-        LOGGER.debug("findByCourseId({})", courseId);
-        return courseAgregate.findByCourseId(courseId);
+    public List<Student> findByCourseId(Integer courseId) {
+        LOGGER.debug("find students by course id");
+        return studentDao.findByCourseId(courseId);
     }
+
 
     @Override
     public Student findById(Integer studentId) {
