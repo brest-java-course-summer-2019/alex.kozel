@@ -1,5 +1,6 @@
 package com.epam.brest.summer.courses2019.rest_app;
 
+import com.epam.brest.summer.courses2019.model.CountStudentsOnCourse;
 import com.epam.brest.summer.courses2019.model.Course;
 import com.epam.brest.summer.courses2019.service.CourseService;
 import org.slf4j.Logger;
@@ -23,11 +24,16 @@ public class CourseRestController {
     @Autowired
     private CourseService courseService;
 
-
     @GetMapping(value ="/courses")
     public Collection<Course> findAll(){
         LOGGER.debug("get all courses");
         return courseService.findAll();
+    }
+
+    @GetMapping(value = "/courses/with_count")
+    public List<CountStudentsOnCourse> findAllCount() {
+        LOGGER.debug("get all courses with count of students");
+        return courseService.countStudentsOnCourse();
     }
 
     @GetMapping(value ="/courses/{id}")
@@ -37,7 +43,7 @@ public class CourseRestController {
         return courseService.findById(id);
     }
 
-    @PutMapping(value = "/clients")
+    @PutMapping(value = "/courses")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public void update(@RequestBody Course course) {
         LOGGER.debug("update course ({})", course);
@@ -56,7 +62,7 @@ public class CourseRestController {
         LOGGER.debug("add course({})", course);
         return courseService.add(course);
     }
-    @GetMapping(value = "/devices/{fromDate}/{toDate}")
+    @GetMapping(value = "/courses/{fromDate}/{toDate}")
     public List<Course> filteredCoursesByDate(
             @PathVariable(value = "fromDate") String fromDate,
             @PathVariable(value = "toDate") String toDate)

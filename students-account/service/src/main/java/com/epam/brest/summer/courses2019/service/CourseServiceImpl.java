@@ -24,8 +24,9 @@ public class CourseServiceImpl implements CourseService {
 
     private CountStudentsOnCourseDao countStudentsOnCourseDao;
 
-    public CourseServiceImpl(CourseDao dao) {
+    public CourseServiceImpl(CourseDao dao, CountStudentsOnCourseDao countStudentsOnCourseDao) {
             this.courseDao = dao;
+            this.countStudentsOnCourseDao = countStudentsOnCourseDao;
         }
 
         @Override
@@ -33,7 +34,6 @@ public class CourseServiceImpl implements CourseService {
             LOGGER.debug("Find all courses");
             return courseDao.findAll();
         }
-
 
         @Override
         public List<CountStudentsOnCourse> countStudentsOnCourse()

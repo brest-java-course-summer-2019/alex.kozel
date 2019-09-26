@@ -18,6 +18,6 @@ public class HomeController {
      */
     @GetMapping("/")
     public String defaultPageRedirect() {
-        return "redirect:Courses";
+        return "redirect:/Courses";
     }
 }

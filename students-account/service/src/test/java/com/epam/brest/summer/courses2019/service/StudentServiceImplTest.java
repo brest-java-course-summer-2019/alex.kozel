@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath:test-service.xml"})
+@ContextConfiguration(locations = {"classpath*:dao-context.xml", "classpath*:test-db.xml", "classpath*:test-service.xml"})
 public class StudentServiceImplTest {
 
     @Autowired
@@ -21,7 +21,6 @@ public class StudentServiceImplTest {
     @Test
     void findAll() {
         List<Student> students = studentService.findAll();
-
         assertNotNull(students);
         assertFalse(students.isEmpty());
     }

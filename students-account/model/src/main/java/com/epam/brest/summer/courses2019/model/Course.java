@@ -26,12 +26,6 @@ public class Course {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date courseDate;
 
-
-    /**
-     * Count of students on course
-     */
-    private Integer countOfStudentsOnCourse;
-
     /**
      * Constructor without arguments.
      */
@@ -102,20 +96,6 @@ public class Course {
     public void setCourseDate(final Date courseDate) {
         this.courseDate = courseDate;
     }
-
-    /**
-     * Get number of Students on a course
-     *
-     * @return countOfStudentsOnCourse count students on course
-     */
-    public Integer getCountOfStudentsOnCourse() {
-        return countOfStudentsOnCourse;
-    }
-
-    public void setCountOfStudentsOnCourse(Integer countOfStudentsOnCourse) {
-        this.countOfStudentsOnCourse = countOfStudentsOnCourse;
-    }
-
 
     /**
      * {@inheritDoc}

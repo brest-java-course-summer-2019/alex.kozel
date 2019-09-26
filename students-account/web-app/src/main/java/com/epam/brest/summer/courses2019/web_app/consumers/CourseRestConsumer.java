@@ -29,14 +29,14 @@ public class CourseRestConsumer implements CourseService {
     @Override
     public List<Course> findAll() throws ServerDataAccessExeption {
         LOGGER.debug("Find all courses");
-        ResponseEntity<List> responseEntity = restTemplate.getForEntity(url, List.class);
+        ResponseEntity<List> responseEntity = restTemplate.getForEntity(url+"/", List.class);
         return (List<Course>) responseEntity.getBody();
     }
 
     @Override
     public List<CountStudentsOnCourse> countStudentsOnCourse() {
-        LOGGER.debug("CountStudentsOnCourse");
-        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/with-count", List.class);
+        LOGGER.debug("Find all courses with count of students");
+        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/with_count", List.class);
         return (List<CountStudentsOnCourse>) responseEntity.getBody();
     }
 
