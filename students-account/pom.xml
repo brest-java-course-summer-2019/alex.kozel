@@ -75,12 +75,6 @@
       </dependency>
       <dependency>
         <groupId>com.epam.brest.summer.courses2019</groupId>
-        <artifactId>test-db</artifactId>
-        <version>${project.version}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.epam.brest.summer.courses2019</groupId>
         <artifactId>service</artifactId>
         <version>${project.version}</version>
       </dependency>
@@ -89,6 +83,12 @@
         <artifactId>web-app</artifactId>
         <version>${project.version}</version>
       </dependency>
+      <dependency>
+        <groupId>com.epam.brest.summer.courses2019</groupId>
+        <artifactId>rest-app</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
 
 
 
@@ -215,12 +215,23 @@
         <version>2.0.0</version>
         <scope>test</scope>
       </dependency>
+      <dependency>
+        <groupId>org.json</groupId>
+        <artifactId>json</artifactId>
+        <version>20180130</version>
+      </dependency>
 
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-databind</artifactId>
         <version>${jackson-databind.version}</version>
       </dependency>
+
+      <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+      <version>2.9.8</version>
+    </dependency>
 
     </dependencies>
   </dependencyManagement>
@@ -303,22 +314,6 @@
           <artifactId>coveralls-maven-plugin</artifactId>
           <version>4.3.0</version>
         </plugin>
-
-<!--        &lt;!&ndash; Embedded Jetty HTTP Server for testing war application &ndash;&gt;-->
-<!--        <plugin>-->
-<!--          <groupId>org.eclipse.jetty</groupId>-->
-<!--          <artifactId>jetty-maven-plugin</artifactId>-->
-<!--          <version>9.4.19.v20190610</version>-->
-<!--          <configuration>-->
-<!--            <scanIntervalSeconds>10</scanIntervalSeconds>-->
-<!--            <webApp>-->
-<!--              <contextPath>/</contextPath>-->
-<!--            </webApp>-->
-<!--            <httpConnector>-->
-<!--              <port>8090</port>-->
-<!--            </httpConnector>-->
-<!--          </configuration>-->
-<!--        </plugin>-->
       </plugins>
 
     </pluginManagement>

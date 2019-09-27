@@ -19,10 +19,6 @@
             <artifactId>dao</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.epam.brest.summer.courses2019</groupId>
-            <artifactId>test-db</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
         </dependency>
