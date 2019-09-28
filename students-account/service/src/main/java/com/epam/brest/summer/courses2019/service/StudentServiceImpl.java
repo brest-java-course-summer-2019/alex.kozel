@@ -19,21 +19,23 @@ public class StudentServiceImpl implements StudentService {
 
     private StudentDao studentDao;
 
+
     public StudentServiceImpl(StudentDao studentDao) {
         this.studentDao = studentDao;
     }
 
     @Override
     public List<Student> findAll() {
-        LOGGER.debug("Find all employees");
+        LOGGER.debug("Find all students");
         return studentDao.findAll();
     }
 
     @Override
     public List<Student> findByCourseId(Integer courseId) {
-        LOGGER.debug("findByCourseId({})", courseId);
+        LOGGER.debug("find students by course id");
         return studentDao.findByCourseId(courseId);
     }
+
 
     @Override
     public Student findById(Integer studentId) {

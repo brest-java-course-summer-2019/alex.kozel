@@ -12,7 +12,7 @@
 
     <tx:annotation-driven/>
 
-    <context:property-placeholder location="classpath:sql.properties"/>
+    <context:property-placeholder location="classpath*:sql.properties"/>
 
     <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
         <constructor-arg name="dataSource" ref="dataSource"/>
@@ -22,8 +22,13 @@
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 
+    <bean id="countStudentsOnCourseDao" class="com.epam.brest.summer.courses2019.dao.CountStudentsOnCourseDaoJdbcImpl">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
+
     <bean id="courseService" class="com.epam.brest.summer.courses2019.service.CourseServiceImpl">
         <constructor-arg ref="courseDao"/>
+        <constructor-arg ref="countStudentsOnCourseDao"/>
     </bean>
 
     <bean id="studentDao" class="com.epam.brest.summer.courses2019.dao.StudentDaoJdbcImpl">
@@ -33,6 +38,5 @@
     <bean id="studentService" class="com.epam.brest.summer.courses2019.service.StudentServiceImpl">
         <constructor-arg ref="studentDao"/>
     </bean>
-
 
 </beans>

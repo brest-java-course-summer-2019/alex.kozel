@@ -16,8 +16,8 @@ public class HomeController {
      *
      * @return redirect path
      */
-    @GetMapping("/")
+    @GetMapping(value = "/")
     public String defaultPageRedirect() {
-        return "redirect:Courses";
+        return "redirect:/courses";
     }
 }

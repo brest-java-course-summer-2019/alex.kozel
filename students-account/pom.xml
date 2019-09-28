@@ -14,7 +14,6 @@
 
   <modules>
     <module>model</module>
-    <module>test-db</module>
     <module>dao</module>
     <module>service</module>
     <module>rest-app</module>
@@ -76,12 +75,6 @@
       </dependency>
       <dependency>
         <groupId>com.epam.brest.summer.courses2019</groupId>
-        <artifactId>test-db</artifactId>
-        <version>${project.version}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.epam.brest.summer.courses2019</groupId>
         <artifactId>service</artifactId>
         <version>${project.version}</version>
       </dependency>
@@ -90,6 +83,12 @@
         <artifactId>web-app</artifactId>
         <version>${project.version}</version>
       </dependency>
+      <dependency>
+        <groupId>com.epam.brest.summer.courses2019</groupId>
+        <artifactId>rest-app</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
 
 
 
@@ -131,7 +130,6 @@
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
         <version>1.4.199</version>
-        <scope>test</scope>
       </dependency>
 
       <dependency>
@@ -217,12 +215,23 @@
         <version>2.0.0</version>
         <scope>test</scope>
       </dependency>
+      <dependency>
+        <groupId>org.json</groupId>
+        <artifactId>json</artifactId>
+        <version>20180130</version>
+      </dependency>
 
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-databind</artifactId>
         <version>${jackson-databind.version}</version>
       </dependency>
+
+      <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+      <version>2.9.8</version>
+    </dependency>
 
     </dependencies>
   </dependencyManagement>
@@ -304,22 +313,6 @@
           <groupId>org.eluder.coveralls</groupId>
           <artifactId>coveralls-maven-plugin</artifactId>
           <version>4.3.0</version>
-        </plugin>
-
-        <!-- Embedded Jetty HTTP Server for testing war application -->
-        <plugin>
-          <groupId>org.eclipse.jetty</groupId>
-          <artifactId>jetty-maven-plugin</artifactId>
-          <version>9.4.19.v20190610</version>
-          <configuration>
-            <scanIntervalSeconds>10</scanIntervalSeconds>
-            <webApp>
-              <contextPath>/</contextPath>
-            </webApp>
-            <httpConnector>
-              <port>8080</port>
-            </httpConnector>
-          </configuration>
         </plugin>
       </plugins>
 
@@ -423,6 +416,15 @@
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.0.0</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
         <configuration>
           <failOnViolation>true</failOnViolation> <!-- this is actually true by default, but can be disabled -->
@@ -490,6 +492,7 @@
           </reportSet>
         </reportSets>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>

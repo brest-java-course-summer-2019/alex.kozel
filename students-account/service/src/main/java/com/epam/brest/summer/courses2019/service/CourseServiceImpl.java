@@ -1,6 +1,8 @@
 package com.epam.brest.summer.courses2019.service;
 
+import com.epam.brest.summer.courses2019.dao.CountStudentsOnCourseDao;
 import com.epam.brest.summer.courses2019.dao.CourseDao;
+import com.epam.brest.summer.courses2019.model.CountStudentsOnCourse;
 import com.epam.brest.summer.courses2019.model.Course;
 
 import java.util.Date;
@@ -20,8 +22,11 @@ public class CourseServiceImpl implements CourseService {
 
     private CourseDao courseDao;
 
-    public CourseServiceImpl(CourseDao dao) {
+    private CountStudentsOnCourseDao countStudentsOnCourseDao;
+
+    public CourseServiceImpl(CourseDao dao, CountStudentsOnCourseDao countStudentsOnCourseDao) {
             this.courseDao = dao;
+            this.countStudentsOnCourseDao = countStudentsOnCourseDao;
         }
 
         @Override
@@ -31,9 +36,16 @@ public class CourseServiceImpl implements CourseService {
         }
 
         @Override
+        public List<CountStudentsOnCourse> countStudentsOnCourse()
+                throws DataAccessException{
+        LOGGER.debug("Count students on course");
+        return countStudentsOnCourseDao.countStudentsOnCourse();
+        }
+
+        @Override
         public Course findById(Integer id) {
-            LOGGER.debug("findById({})", id);
-            return courseDao.findById(id)
+        LOGGER.debug("findById({})", id);
+        return courseDao.findById(id)
                     .orElseThrow(() -> new RuntimeException("Failed to get courses from DB"));
         }
 
@@ -50,14 +62,7 @@ public class CourseServiceImpl implements CourseService {
         }
 
         @Override
-        public void add(Course... courses) {
-            for (Course course : courses) {
-                courseDao.add(course);
-            }
-        }
-
-    @Override
-    public List<Course> filterCourseByDate(Date fromDate, Date toDate) throws DataAccessException {
+        public List<Course> filterCourseByDate(Date fromDate, Date toDate) throws DataAccessException {
         LOGGER.debug("filterCourseByDate({}, {})", fromDate, toDate);
         return courseDao.filterCourseByDate(fromDate, toDate);
     }

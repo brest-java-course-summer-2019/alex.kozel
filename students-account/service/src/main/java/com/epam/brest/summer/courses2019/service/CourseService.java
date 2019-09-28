@@ -1,6 +1,7 @@
 package com.epam.brest.summer.courses2019.service;
 
 
+import com.epam.brest.summer.courses2019.model.CountStudentsOnCourse;
 import com.epam.brest.summer.courses2019.model.Course;
 
 import java.util.Date;
@@ -14,6 +15,13 @@ public interface CourseService {
      * @return courses .
      */
     List<Course> findAll();
+
+    /**
+     * Get number of students on course
+     *
+     * @return students list
+     */
+    List<CountStudentsOnCourse> countStudentsOnCourse();
 
     /**
      * Find course By Id.
@@ -36,8 +44,6 @@ public interface CourseService {
      * @param id course id
      */
     void delete(int id);
-
-    void add(Course... courses);
 
     /**
      * Filter courses by date

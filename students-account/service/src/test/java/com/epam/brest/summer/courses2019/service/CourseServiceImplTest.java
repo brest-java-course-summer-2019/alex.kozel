@@ -17,20 +17,22 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath:test-service.xml"})
+@ContextConfiguration(locations = {"classpath*:dao-context.xml", "classpath*:test-db.xml", "classpath*:test-service.xml"})
 @Rollback
-public class CourseServiceImplTest {
+public class CourseServiceImplTest  {
 
     private SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
-    private  Date date = formatDate.parse("1991-02-02");
     private static final String FROM_DATE = "1970-01-11";
     private static final String TO_DATE = "2019-07-22";
+    Date date = formatDate.parse("1991-02-02");
+
 
     @Autowired
     private CourseService courseService;
 
     public CourseServiceImplTest() throws ParseException {
     }
+
 
     @Test
     void findAll() {
@@ -66,7 +68,8 @@ public class CourseServiceImplTest {
     }
 
     @Test
-    void delete() {
+    void delete() throws ParseException{
+        Date date = formatDate.parse("1991-02-02");
         Course course = new Course("Neo", date);
         courseService.add(course);
         List<Course> courses = courseService.findAll();

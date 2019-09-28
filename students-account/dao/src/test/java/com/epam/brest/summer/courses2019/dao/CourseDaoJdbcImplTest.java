@@ -1,5 +1,6 @@
 package com.epam.brest.summer.courses2019.dao;
 
+import com.epam.brest.summer.courses2019.model.CountStudentsOnCourse;
 import com.epam.brest.summer.courses2019.model.Course;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,6 +36,9 @@ public class CourseDaoJdbcImplTest {
     @Autowired
     CourseDao courseDao;
 
+    @Autowired
+    CountStudentsOnCourseDao countStudentsOnCourseDao;
+
     public CourseDaoJdbcImplTest() throws ParseException {
     }
 
@@ -43,6 +47,14 @@ public class CourseDaoJdbcImplTest {
         List<Course> courses = courseDao.findAll();
         assertNotNull(courses);
         assertTrue(courses.size() > 0);
+    }
+
+    @Test
+    public void countStudentsOnCourse() {
+        List<CountStudentsOnCourse> courses = countStudentsOnCourseDao.countStudentsOnCourse();
+        assertNotNull(courses);
+        assertTrue(courses.size() > 0);
+        assertTrue(courses.get(0).getCountOfStudents().intValue() > 0);
     }
 
     @Test

@@ -1,7 +1,9 @@
 package com.epam.brest.summer.courses2019.model;
 
 import java.util.Date;
-import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 /**
  * POJO Course for model.
@@ -21,7 +23,7 @@ public class Course {
     /**
      * Data Course begin.
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date courseDate;
 
     /**
@@ -94,7 +96,6 @@ public class Course {
     public void setCourseDate(final Date courseDate) {
         this.courseDate = courseDate;
     }
-
 
     /**
      * {@inheritDoc}
