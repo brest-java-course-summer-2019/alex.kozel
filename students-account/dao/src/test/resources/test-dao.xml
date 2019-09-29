@@ -9,6 +9,8 @@
 
     <context:property-placeholder location="classpath:sql.properties"/>
 
+    <import resource="classpath*:test-db.xml"/>
+
     <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
         <constructor-arg name="dataSource" ref="dataSource"/>
     </bean>

@@ -4,9 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>rest-app</artifactId>
-
     <name>Students Account Rest App</name>
 
     <packaging>war</packaging>
@@ -22,10 +20,6 @@
         <dependency>
             <groupId>com.epam.brest.summer.courses2019</groupId>
             <artifactId>service</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.epam.brest.summer.courses2019</groupId>
-            <artifactId>model</artifactId>
         </dependency>
 
         <dependency>
@@ -48,6 +42,10 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -82,8 +80,18 @@
             <artifactId>spring-test</artifactId>
         </dependency>
         <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>

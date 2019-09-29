@@ -7,14 +7,15 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="com.epam.brest.summer.courses2019"/>
+    <context:component-scan base-package="com.epam.brest.summer.courses2019.rest_app"/>
+
 
     <bean id="courseService" class="org.mockito.Mockito" factory-method="mock">
-        <constructor-arg value="com.epam.brest2019.courses.service.CourseService"/>
+        <constructor-arg value="com.epam.brest.summer.courses2019.service.CourseService"/>
     </bean>
 
     <bean id="studentService" class="org.mockito.Mockito" factory-method="mock">
-        <constructor-arg value="com.epam.brest2019.courses.service.StudentService"/>
+        <constructor-arg value="com.epam.brest.summer.courses2019.service.StudentService"/>
     </bean>
 
 </beans>

@@ -51,7 +51,7 @@ public class CourseController {
 
     @PostMapping(value = "/course")
     public final String addCourse(@Valid Course courseAdd, BindingResult result, Model model)
-            throws DataAccessException{
+            throws DataAccessException {
         LOGGER.debug("postAddCourse({}, {})", courseAdd, result);
         courseValidator.validate(courseAdd, result);
         if(result.hasErrors()) {

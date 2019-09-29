@@ -1,6 +1,5 @@
 package com.epam.brest.summer.courses2019.service;
 
-
 import com.epam.brest.summer.courses2019.model.CountStudentsOnCourse;
 import com.epam.brest.summer.courses2019.model.Course;
 

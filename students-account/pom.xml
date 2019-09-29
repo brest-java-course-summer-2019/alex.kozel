@@ -18,6 +18,8 @@
     <module>service</module>
     <module>rest-app</module>
     <module>web-app</module>
+    <module>test-db</module>
+    <module>service-api</module>
 
   </modules>
 
@@ -88,7 +90,16 @@
         <artifactId>rest-app</artifactId>
         <version>${project.version}</version>
       </dependency>
-
+      <dependency>
+        <groupId>com.epam.brest.summer.courses2019</groupId>
+        <artifactId>test-db</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.epam.brest.summer.courses2019</groupId>
+        <artifactId>service-api</artifactId>
+        <version>${project.version}</version>
+      </dependency>
 
 
 
@@ -313,6 +324,21 @@
           <groupId>org.eluder.coveralls</groupId>
           <artifactId>coveralls-maven-plugin</artifactId>
           <version>4.3.0</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.eclipse.jetty</groupId>
+          <artifactId>jetty-maven-plugin</artifactId>
+          <version>9.4.19.v20190610</version>
+          <configuration>
+            <scanIntervalSeconds>10</scanIntervalSeconds>
+            <webApp>
+              <contextPath>/</contextPath>
+            </webApp>
+            <httpConnector>
+              <port>8081</port>
+            </httpConnector>
+          </configuration>
         </plugin>
       </plugins>
 
