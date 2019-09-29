@@ -112,7 +112,7 @@
                         <contextPath>/</contextPath>
                     </webApp>
                     <httpConnector>
-                        <port>8090</port>
+                        <port>8093</port>
                     </httpConnector>
                 </configuration>
             </plugin>

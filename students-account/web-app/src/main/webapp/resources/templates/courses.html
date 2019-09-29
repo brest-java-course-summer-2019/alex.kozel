@@ -76,29 +76,39 @@
 
                         <tbody>
                         <tr class="table-active">
-                        <tr th:each="countStudentsOnCourse : ${courses}">
-                            <td th:text="${countStudentsOnCourse.courseName}"></td>
-                            <td class="text-center" th:text="${countStudentsOnCourse.courseDate}"></td>
+                        <tr th:each="course : ${courses}">
+                            <td th:text="${course.courseName}"></td>
+                            <td class="text-center" th:text="${course.courseDate}"></td>
                             <td class="text-center" th:text="${countStudentsOnCourse.countOfStudents}"></td>
                             <td class="text-right">
                                 <a href="course.html"
-                                   th:href="@{|/course/${countStudentsOnCourse.courseId}|}"
+                                   th:href="@{|/course/${course.courseId}|}"
                                    class="btn btn-light btn-sm"
                                    title="Edit course"
                                    data-toggle="tooltip"
                                    data-placement="top">
                                     <i class="fas fa-user-edit"></i> <span
-                                        class="d-none d-md-inline">&nbsp;&nbsp;Edit&nbsp;&nbsp;</span></a>
+                                        class="d-none d-md-inline">&nbsp;&nbsp;Course&nbsp;&nbsp;</span></a>
                                 <a href="#"
                                    data-toggle="modal"
                                    data-target="#deleteDialog"
-                                   th:attr="data-id=${countStudentsOnCourse.courseId}, data-name=${countStudentsOnCourse.courseName}"
+                                   th:attr="data-id=${course.courseId}, data-name=${course.courseName}"
+                                   th:class="${countStudentsOnCourse.countOfStudents > 0} ? 'invisible' : 'btn btn-dark btn-sm'"
                                    title=" Delete course">
                                     <i class="fas fa-user-minus"></i>
                                     <span class="d-none d-md-inline">&nbsp;&nbsp;Delete</span></a>
                             </td>
                         </tr>
 
+                        </tbody>
+                        <tfoot class="thead-light">
+                        <tr>
+                            <th>Total:</th>
+                            <th></th>
+                            <th class="text-center" th:text="${totalCountOfStudents}"></th>
+                            <th></th>
+                        </tr>
+                        </tfoot>
                     </table>
 
                 </div>

@@ -1,56 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>courses</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+
+    <link rel="stylesheet"
+          href="../../resources/static/css/fontawesome.min.css"
+          th:href="@{/resources/static/css/fontawesome.min.css}">
+
+    <link rel="stylesheet"
+          href="../../resources/static/css/bootstrap.min.css"
+          th:href="@{/resources/static/css/bootstrap.min.css}">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+
+    <link rel="stylesheet"
+          href="../../resources/static/css/style.css"
+          th:href="@{/resources/static/css/style.css}">
+    <link rel="stylesheet"
+          media="screen"
+          href="../../resources/static/css/bootstrap-datetimepicker.css"
+          th:href="@{/resources/static/css/bootstrap-datetimepicker.css}">
+
+       <title th:text="${isNew} ? #{new_course} : #{edit_course}">
+    New course/Edit course
+       </title>
 </head>
 <body>
-
-<div class="container">
+<header>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <ui class="nav-item">
-            <a class="nav-link " href="Students.html">Students</a>
+            <a class="nav-item nav-link active"
+               href="courses.html"
+               th:href="@{/courses}">Courses</a>
         </ui>
         <ui class="nav-item">
-            <a class="nav-link" href="Courses.html">Courses</a>
+            <a class="nav-item nav-link active"
+               href="students.html"
+               th:href="@{/students}">Students</a>
         </ui>
     </nav>
-</div>
+
+    <nav id="main-header"
+         class="py-1 mb-3 navbar navbar-expand-sm navbar-light text-danger">
+        <span class="navbar-brand text-uppercase mr-auto"
+              th:text="${isNew} ? 'new_course' : 'edit_course'">New course / Edit course</span>
+        <ul class="navbar-nav float-right">
+            <li class="nav-item">
+                <a href="courses.html"
+                   th:href="@{/course}"
+                   th:onclick="@{document.forms['courseForm'].submit(); return false;}"
+                   class="btn btn-light"
+                   data-toggle="tooltip"
+                   data-placement="bottom"
+                   th:title="${isNew} ? #{save_course} : #{save_changes}">
+                    <i class="fa fa-save"></i>
+                    <span class="d-none d-sm-inline"
+                          th:text="${isNew} ? #{create} : #{save}">
+                        Save
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<hr>
+
+<section id="courses">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="card border-light mb-3">
+                    <div class="card-body">
+
+                        <form id="courseForm"
+                              th:object="${course}"
+                              th:action="@{${#httpServletRequest.servletPath}}"
+                              th:method="@{post}">
+
+                            <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                                <strong>Warning!</strong>
+                                <strong>Please correct errors:</strong>
+                            </div>
+
+                            <input id="field_courseId"
+                                   name="field_courseId"
+                                   type="hidden"
+                                   th:field="*{courseId}"/>
 
 
+                            <div class="form-group">
+                                <label class="form-control-label font-weight-bolder"
+                                       for="field_courseName">Course name</label>
+                                <input class="form-control "
+                                       th:class="${#fields.hasErrors('courseName')} ? 'form-control is-invalid' : 'form-control'"
+                                       id="field_courseName"
+                                       type="text"
+                                       placeholder="Enter Course Name"
+                                       th:field="*{courseName}"/>
+                                <div th:if="${#fields.hasErrors('courseName')}"
+                                     class="invalid-feedback"
+                                     th:errors="*{courseName}">[errors]
+                                </div>
+                            </div>
 
 
-    <div class="container">
-        <div class="form-group">
+<!--                            <div class="form-group">-->
+<!--                                <label class="form-control-label font-weight-bolder"-->
+<!--                                       for="field_courseDate">Date added</label>-->
+<!--                                <input class="form-control"-->
+<!--                                       id="field_courseDate"-->
+<!--                                       type="text"-->
+<!--                                       th:field="*{courseDate}"/>-->
+<!--                            </div>-->
+<!--                            <div class="input-append date form_datetime">-->
+<!--                                <label th:text="#{course_date}"-->
+<!--                                >-->
+<!--                                    Date&Time-->
+<!--                                </label>-->
+<!--                                <span class="add-on">-->
+<!--                                    <i class="fa fa-calendar"></i>-->
+<!--                                </span>-->
+<!--                                <input class="form-control"-->
+<!--                                       id="courseDate"-->
+<!--                                       type="text"-->
+<!--                                       th:field="*{courseDate}"/>-->
+<!--                                <span class="input-group-addon">-->
+<!--                                    <i class="glyphicon glyphicon-th"></i>-->
+<!--                                </span>-->
+<!--                            </div>-->
 
-            <label class="form-control-label"
-                   for="speaker name">Speaker name</label>
-            <input class="form-control"
-                   id="speaker name"
-                   aria-describedby="name Help"
-                   placeholder="Enter first name and last name">
-            <div class="form-group">
-                <label class="form-control-label"
-                       for="course name">Course</label>
-                <input class="form-control"
-                       id="course name"
-                       aria-describedby="course Help"
-                       placeholder="Enter new course">
+
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</section>
 
-<div class="container">
-    <a class="btn btn-success" href="Courses.html">yes</a>
-    <a class="btn btn-danger" href="Courses.html">no</a>
-</div>
+<hr>
 
 <footer>
-    <hr/>
-    <p class="text-center">&copy; 2019</p>
+    <nav class="pl-2 navbar navbar-expand-sm navbar-light bg-dark text-light  p-0">
+        <p>&copy; Brest Java Course Summer 2019 <i class="far fa-futbol"></i></p>
+    </nav>
 </footer>
+<script src="../../resources/static/js/jquery.min.js"
+        th:src="@{/resources/static/js/jquery.min.js}"></script>
+<script src="../../resources/static/js/popper.min.js"
+        th:src="@{/resources/static/js/popper.min.js}"></script>
+<script src="../../resources/static/js/bootstrap.min.js"
+        th:src="@{/resources/static/js/bootstrap.min.js}"></script>
+<script src="../../resources/static/js/bootstrap-datetimepicker.js"
+        th:src="@{/resources/static/js/bootstrap-datetimepicker.js}"
+        type="text/javascript"
+        charset="UTF-8"></script>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+<script type="text/javascript">
+    $(".form_datetime").datetimepicker({
+        format: "yyyy-MM-dd",
+        autoclose: true,
+        todayBtn: true,
+        minuteStep: 10,
+        timezone: 'US'
+    });
+</script>
+
+
 </body>
 </html>

@@ -63,13 +63,13 @@ public class CourseRestControllerTest {
                 .build();
     }
 
-    @Test
-    public void findAll() {
-        Mockito.when(courseService.findAll()).thenReturn(Arrays.asList(createCourseForTest(COURSE_ID1), createCourseForTest(COURSE_ID2)));
-        courseRestController.findAll();
-        Mockito.verify(courseService, times(1)).findAll();
-
-}
+//    @Test
+//    public void findAll() {
+//        Mockito.when(courseService.findAll()).thenReturn(Arrays.asList(createCourseForTest(COURSE_ID1), createCourseForTest(COURSE_ID2)));
+//        courseRestController.findAll();
+//        Mockito.verify(courseService, times(1)).findAll();
+//
+//}
 
     @Test
     public void findById() {

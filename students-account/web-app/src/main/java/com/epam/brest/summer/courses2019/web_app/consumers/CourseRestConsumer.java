@@ -75,3 +75,4 @@ public class CourseRestConsumer implements CourseService {
         return (Course) result;
     }
 }
+

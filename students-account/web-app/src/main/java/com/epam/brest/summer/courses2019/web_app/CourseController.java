@@ -42,11 +42,27 @@ public class CourseController {
      *
      * @throws Exception
      */
+//    @GetMapping(value = "/courses")
+//    public final String courses(Model model) throws Exception{
+//        LOGGER.debug("findAll({})", model);
+//    model.addAttribute("courses", courseService.findAll());
+//    return "courses";
+//    }
+
     @GetMapping(value = "/courses")
     public final String courses(Model model) throws Exception{
         LOGGER.debug("findAll({})", model);
-    model.addAttribute("courses", courseService.findAll());
-    return "courses";
+        model.addAttribute("courses", courseService.countStudentsOnCourse());
+        return "courses";
+    }
+
+    @GetMapping(value = "/course")
+    public final String gotoAddDevicePage(Model model) throws Exception {
+        LOGGER.debug("gotoAddCoursePage({})", model);
+        Course course = new Course();
+        model.addAttribute("isNew", true);
+        model.addAttribute("course", course);
+        return "course";
     }
 
     @PostMapping(value = "/course")
@@ -59,14 +75,14 @@ public class CourseController {
             model.addAttribute("isNew", true );
             return "course";
         } else {
-            this.courseService.add(courseAdd);
+            courseService.add(courseAdd);
             return "redirect:/courses";
         }
 
     }
 
     /**
-     * Goto edit client page
+     * Goto edit course page
      *
      * @param id
      * @param model
@@ -76,7 +92,7 @@ public class CourseController {
      */
     @GetMapping(value ="/course/{id}")
     public final String gotoEditCoursesPage (@PathVariable Integer id, Model model) throws Exception{
-        LOGGER.debug("gotoEditClientPage({}, {})", id, model);
+        LOGGER.debug("gotoEditCoursePage({}, {})", id, model);
         model.addAttribute("course", courseService.findById(id));
         model.addAttribute("isNew", false);
         return "course";
@@ -102,7 +118,7 @@ public class CourseController {
             return "course";
         } else {
             this.courseService.update(course);
-            return "redirect:/clients";
+            return "redirect:/courses";
         }
     }
 

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title th:text="#{clients}">Error</title>
+
+    <link rel="icon" href="data:;base64,=">
+    <link rel="stylesheet"
+          href="../../resources/static/css/font-awesome.min.css"
+          th:href="@{/resources/static/css/font-awesome.min.css}">
+    <link rel="stylesheet"
+          href="../../resources/static/css/bootstrap.css"
+          th:href="@{/resources/static/css/bootstrap.css}">
+    <link rel="stylesheet"
+          href="../../resources/static/css/style.css"
+          th:href="@{/resources/static/css/style.css}">
+</head>
+
+<body>
+<nav class="pl-2 navbar navbar-expand-sm navbar-dark bg-dark text-light  p-0">
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a href="/" class="navbar-brand"><img src="../../resources/static/img/logo.svg"
+                                          th:src="@{/resources/static/img/logo.svg}"
+                                          height="32" width="32" alt="HR"></a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+            <nav class="navbar-nav">
+                <a class="nav-item nav-link active"
+                   href="clients.html"
+                   th:href="@{/clients}"
+                   th:text="#{clients}">Movies</a>
+                <a class="nav-item nav-link"
+                   href="devices.html"
+                   th:href="@{/devices}"
+                   th:text="#{devices}">Seances</a>
+            </nav>
+        </div>
+    </nav>
+<header>
+    <div class="card alert alert-danger" align="center">
+        <h3 class = "alert-heading" th:text="${errorMessage}">Error message</h3>
+    </div>
+</header>
+    <script src="../../resources/static/js/jquery.min.js"
+            th:src="@{/resources/static/js/jquery.min.js}"></script>
+    <script src="../../resources/static/js/popper.min.js"
+            th:src="@{/resources/static/js/popper.min.js}"></script>
+    <script src="../../resources/static/js/bootstrap.min.js"
+            th:src="@{/resources/static/js/bootstrap.min.js}"></script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+</body>
+</html>
