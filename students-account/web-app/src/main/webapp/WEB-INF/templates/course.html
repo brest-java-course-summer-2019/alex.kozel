@@ -107,30 +107,25 @@
                             </div>
 
 
-<!--                            <div class="form-group">-->
-<!--                                <label class="form-control-label font-weight-bolder"-->
-<!--                                       for="field_courseDate">Date added</label>-->
-<!--                                <input class="form-control"-->
-<!--                                       id="field_courseDate"-->
-<!--                                       type="text"-->
-<!--                                       th:field="*{courseDate}"/>-->
-<!--                            </div>-->
-<!--                            <div class="input-append date form_datetime">-->
-<!--                                <label th:text="#{course_date}"-->
-<!--                                >-->
-<!--                                    Date&Time-->
-<!--                                </label>-->
-<!--                                <span class="add-on">-->
-<!--                                    <i class="fa fa-calendar"></i>-->
-<!--                                </span>-->
-<!--                                <input class="form-control"-->
-<!--                                       id="courseDate"-->
-<!--                                       type="text"-->
-<!--                                       th:field="*{courseDate}"/>-->
-<!--                                <span class="input-group-addon">-->
-<!--                                    <i class="glyphicon glyphicon-th"></i>-->
-<!--                                </span>-->
-<!--                            </div>-->
+<!--                                       type="${#temporals.format(localDate, 'yyyy-MM-dd')}"-->
+                            <div class="input-append date form_datetime">
+                                <label th:text="#{course_date}"
+                                >
+                                    Date&Time
+                                </label>
+                                <span class="add-on">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                                <input th:field="*{courseDate}"
+                                       class="form-control"
+                                       size="16"
+                                       type="text"
+                                       value=""
+                                       readonly>
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-th"></i>
+                                </span>
+                            </div>
 
 
                         </form>
@@ -154,6 +149,7 @@
         th:src="@{/resources/static/js/popper.min.js}"></script>
 <script src="../../resources/static/js/bootstrap.min.js"
         th:src="@{/resources/static/js/bootstrap.min.js}"></script>
+
 <script src="../../resources/static/js/bootstrap-datetimepicker.js"
         th:src="@{/resources/static/js/bootstrap-datetimepicker.js}"
         type="text/javascript"
@@ -166,14 +162,13 @@
 </script>
 <script type="text/javascript">
     $(".form_datetime").datetimepicker({
-        format: "yyyy-MM-dd",
+        format: "yyyy MM dd",
         autoclose: true,
         todayBtn: true,
         minuteStep: 10,
         timezone: 'US'
     });
 </script>
-
 
 </body>
 </html>

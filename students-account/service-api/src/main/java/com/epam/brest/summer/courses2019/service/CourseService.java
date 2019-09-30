@@ -52,7 +52,7 @@ public interface CourseService {
      *
      * @return list of filtered courses
      */
-    List<Course> filterCourseByDate(Date fromDate, Date toDate);
+    List<CountStudentsOnCourse> filterCourseByDate(Date fromDate, Date toDate);
 
     Course add(Course course);
 }

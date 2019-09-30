@@ -66,7 +66,7 @@ public class CourseServiceImpl implements CourseService {
         }
 
         @Override
-        public List<Course> filterCourseByDate(Date fromDate, Date toDate) throws DataAccessException {
+        public List<CountStudentsOnCourse> filterCourseByDate(Date fromDate, Date toDate) throws DataAccessException {
         LOGGER.debug("filterCourseByDate({}, {})", fromDate, toDate);
         return courseDao.filterCourseByDate(fromDate, toDate);
     }

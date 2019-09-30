@@ -17,6 +17,9 @@
     <link rel="stylesheet"
           href="../../resources/static/css/style.css"
           th:href="@{/resources/static/css/style.css}">
+    <link rel="stylesheet"
+          type="text/css"
+          href="http://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 
     <title>Courses List</title>
 
@@ -50,10 +53,25 @@
                    data-placement="left"
                    title="Add course">
                     <i class="fas fa-user-friends"></i> <i class="fas fa-plus"></i><span
-                        class="d-none d-sm-inline">&nbsp;&nbsp;&nbsp;Add Courses</span></a>
+                        class="d-none d-sm-inline">&nbsp;&nbsp;&nbsp;Add Course</span></a>
             </li>
         </ul>
     </nav>
+
+    <span class="input-group col">
+            <div class="input-group-prepend">
+                <span class="input-group-text"
+                      id="basic-addon"
+                      th:text="#{filter}">
+                    Filter
+                </span>
+            </div>
+            <input type="text"
+                   class="form-control"
+                   id="datefilter"
+                   name="datefilter">
+        </span>
+
 </header>
 
 <hr>
@@ -78,9 +96,10 @@
                         <tr class="table-active">
                         <tr th:each="countStudentsOnCourse : ${courses}">
                             <td th:text="${countStudentsOnCourse.courseName}"></td>
-                            <td class="text-center" th:text="${countStudentsOnCourse.courseDate}"></td>
+                            <td class="text-center" th:text="${{countStudentsOnCourse.courseDate}}"></td>
                             <td class="text-center" th:text="${countStudentsOnCourse.countOfStudents}"></td>
                             <td class="text-right">
+
                                 <a href="course.html"
                                    th:href="@{|/course/${countStudentsOnCourse.courseId}|}"
                                    class="btn btn-light btn-sm"
@@ -89,6 +108,7 @@
                                    data-placement="top">
                                     <i class="fas fa-user-edit"></i> <span
                                         class="d-none d-md-inline">&nbsp;&nbsp;Edit&nbsp;&nbsp;</span></a>
+
                                 <a href="#"
                                    data-toggle="modal"
                                    data-target="#deleteDialog"
@@ -112,7 +132,8 @@
 
 <footer>
     <nav class="pl-2 navbar navbar-expand-sm navbar-dark bg-dark text-light  p-0">
-        <p>&copy; Brest Java Course Summer 2019 <i class="far fa-futbol"></i></p>
+        <p>&copy; Brest Java Course Summer 2019 </p>
+    </nav>
 </footer>
 
 <!-- Confirm delete Modal -->
@@ -145,6 +166,35 @@
         th:src="@{/resources/static/js/popper.min.js}"></script>
 <script src="../../resources/static/js/bootstrap.min.js"
         th:src="@{/resources/static/js/bootstrap.min.js}"></script>
+<script src="../../resources/static/js/bootstrap-datetimepicker.js"
+        th:src="@{/resources/static/js/bootstrap-datetimepicker.js}"
+        type="text/javascript"
+        charset="UTF-8"></script>
+
+<!--<script type="text/javascript" src="http://cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>-->
+<script type="text/javascript" src="http://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="http://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+
+
+<script>
+    $(function() {
+
+        $('input[name="datefilter"]').daterangepicker({
+            locale: {
+                format: 'YYYY-MM-DD'
+            }
+        });
+
+        $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+            window.location.href = '/courses/' + picker.startDate.format('YYYY-MM-DD') + '/' + picker.endDate.format('YYYY-MM-DD');
+            $(this).val(picker.startDate.format('YYYY-MM-DD') + ' to ' + picker.endDate.format('YYYY-MM-DD'));
+        });
+
+        $('input[name="datefilter"]').on('cancel.daterangepicker', function() {
+            $(this).val('');
+        });
+    });
+</script>
 
 <script>
     $(function () {
@@ -152,13 +202,11 @@
     })
     $('#deleteDialog').on('show.bs.modal', function (event) {
         var target = $(event.relatedTarget)
-        $(this).find('.modal-body').text('Please confirm delete course: "' + target.data('name') + '"')
+        $(this).find('.modal-body').text(target.data('name'))
         document.getElementById('deleteUrl').href = '/course/' + target.data('id') + '/delete';
     })
-
-
-
 </script>
+
 
 </body>
 </html>

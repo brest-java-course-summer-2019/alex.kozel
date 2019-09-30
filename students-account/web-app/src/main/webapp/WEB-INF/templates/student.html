@@ -1,61 +1,139 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Edit student</title>
+
+    <link rel="stylesheet"
+          href="../../resources/static/css/font-awesome.min.css"
+          th:href="@{/resources/static/css/font-awesome.min.css}">
+
+    <link rel="stylesheet"
+          href="../../resources/static/css/bootstrap.css"
+          th:href="@{/resources/static/css/bootstrap.css}">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+
+    <link rel="stylesheet"
+          href="../../resources/static/css/style.css"
+          th:href="@{/resources/static/css/style.css}">
+
+    <title th:text="${isNew} ? #{new_student} : #{edit_student}">
+        New student/Edit student
+    </title>
 
 </head>
 <body>
 
 <header>
-    <div class="container">
-        <nav class="navbar navbar-expand-sm navbar-light bg-light">
-            <ui class="nav-item">
-                <a class="nav-link " href="#">Students</a>
-            </ui>
-            <ui class="nav-item">
-                <a class="nav-link" href="Courses.html">Courses</a>
-            </ui>
-        </nav>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <ui class="nav-item">
+            <a class="nav-item nav-link active"
+               href="courses.html"
+               th:href="@{/courses}">Courses</a>
+        </ui>
+        <ui class="nav-item">
+            <a class="nav-item nav-link active"
+               href="students.html"
+               th:href="@{/students}">Students</a>
+        </ui>
+    </nav>
 
-    </div>
+    <nav id="main-header"
+         class="py-1 mb-3 navbar navbar-expand-sm navbar-light text-danger">
+        <span class="navbar-brand text-uppercase mr-auto"
+              th:text="${isNew} ? 'new_student' : 'edit_student'">New student / Edit student</span>
+        <ul class="navbar-nav float-right">
+            <li class="nav-item">
+                <a href="students.html"
+                   th:href="@{/student}"
+                   th:onclick="@{document.forms['studentForm'].submit(); return false;}"
+                   class="btn btn-light"
+                   data-toggle="tooltip"
+                   data-placement="bottom"
+                   th:title="${isNew} ? #{save_student} : #{save_changes}">
+                    <i class="fa fa-save"></i>
+                    <span class="d-none d-sm-inline"
+                          th:text="${isNew} ? #{create} : #{save}">
+                        Save
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
 
-    <div class="container">
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <label class="input-group-text" for="inputGroupSelect01">Course</label>
+<section id="student">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+
+                        <form id="studentForm"
+                              th:object="${student}"
+                              action="students.html"
+                              th:action="@{${#httpServletRequest.servletPath}}"
+                              th:method="@{post}">
+
+                            <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
+                                 th:text="#{fix_errors}">
+                                <p>Please fix errors below:</p>
+                            </div>
+
+                            <input id="field_studentId"
+                                   name="field_studentId"
+                                   type="hidden"
+                                   th:field="*{studentId}"/>
+
+                            <div class="ui-widget">
+                                <label th:text="#{course}">Course</label>
+                                <select id="courseId" name="courseName" th:field="*{courseId}">
+                                    <option th:each="course : ${courses}"
+                                            th:value="${course.courseId}"
+                                            th:text="${course.courseName}"
+                                            th:selected="${course.courseId} == ${student.courseId}">
+                                        Course
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label"
+                                       for="field_studentName" th:text="#{student}">Student Name</label>
+                                <input class="form-control"
+                                       th:class="${#fields.hasErrors('studentName')} ? 'form-control is-invalid' : 'form-control'"
+                                       id="field_studentName"
+                                       type="text"
+                                       th:field="*{studentName}"/>
+                                <div th:if="${#fields.hasErrors('studentName')}"
+                                     class="invalid-feedback"
+                                     th:errors="*{studentName}">[errors]</div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Choose course</option>
-                <option value="1">Math</option>
-                <option value="2">FA</option>
-                <option value="3">Dance</option>
-                <option value="4">Art</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label"
-                   for="student name">Student name</label>
-            <input class="form-control"
-                   id="student name"
-                   type="text"
-                   value="Mark Otto"/>
         </div>
     </div>
+</section>
 
-    <div class="container">
-    <a class="btn btn-success" href="Students.html">yes</a>
-    <a class="btn btn-danger" href="Students.html">no</a>
-    </div>
+
 <footer>
     <hr/>
-    <p class="text-center">&copy; 2019</p>
+    <p class="text-center">&copy; <th:block th:text="#{footer_text}">&copy; Brest Java Course Summer 2019</th:block></p>
 </footer>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
+<script src="../../resources/static/js/jquery.min.js"
+        th:src="@{/resources/static/js/jquery.min.js}"></script>
+<script src="../../resources/static/js/popper.min.js"
+        th:src="@{/resources/static/js/popper.min.js}"></script>
+<script src="../../resources/static/js/bootstrap.min.js"
+        th:src="@{/resources/static/js/bootstrap.min.js}"></script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
 </body>
 </html>

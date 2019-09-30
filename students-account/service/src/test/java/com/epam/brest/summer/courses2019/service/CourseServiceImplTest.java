@@ -1,5 +1,6 @@
 package com.epam.brest.summer.courses2019.service;
 
+import com.epam.brest.summer.courses2019.model.CountStudentsOnCourse;
 import com.epam.brest.summer.courses2019.model.Course;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -81,7 +82,7 @@ public class CourseServiceImplTest  {
     public void testFilterDeviceByDates() throws ParseException {
         Date fromDate = formatDate.parse(FROM_DATE);
         Date toDate = formatDate.parse(TO_DATE);
-        List<Course> courses = courseService.filterCourseByDate(fromDate, toDate);
+        List<CountStudentsOnCourse> courses = courseService.filterCourseByDate(fromDate, toDate);
         assertNotNull(courses);
         assertTrue(courses.size() > 1);
     }

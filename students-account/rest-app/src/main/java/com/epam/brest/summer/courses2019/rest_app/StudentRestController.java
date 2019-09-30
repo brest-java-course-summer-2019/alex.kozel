@@ -50,11 +50,11 @@ public class StudentRestController {
         return studentService.add(student);
     }
 
-    @GetMapping(value = "/students/{courseId}")
-    @ResponseStatus(value = HttpStatus.OK)
-    public List<Student> findByCourseId(@PathVariable("courseId") Integer courseId) {
-        LOGGER.debug("REST: Find iteminorder by orderId({})", courseId);
-        List<Student> result = studentService.findByCourseId(courseId);
-        return result;
-    }
+//    @GetMapping(value = "/students/{courseId}")
+//    @ResponseStatus(value = HttpStatus.OK)
+//    public List<Student> findByCourseId(@PathVariable("courseId") Integer courseId) {
+//        LOGGER.debug("REST: Find iteminorder by orderId({})", courseId);
+//        List<Student> result = studentService.findByCourseId(courseId);
+//        return result;
+//    }
 }

@@ -1,5 +1,6 @@
 package com.epam.brest.summer.courses2019.dao;
 
+import com.epam.brest.summer.courses2019.model.CountStudentsOnCourse;
 import com.epam.brest.summer.courses2019.model.Course;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -123,11 +124,22 @@ public class CourseDaoJdbcImpl implements CourseDao {
         }
     }
 
+    private class CountStudentsOnCourseRowMapper implements RowMapper<CountStudentsOnCourse>{
+        @Override
+        public CountStudentsOnCourse mapRow(ResultSet resultSet, int i) throws SQLException{
+            CountStudentsOnCourse course = new CountStudentsOnCourse();
+            course.setCourseId(resultSet.getInt("course_Id"));
+            course.setCourseName(resultSet.getString("course_name"));
+            course.setCourseDate(resultSet.getDate("course_date"));
+            return course;
+        }
+    }
+
     @Override
-    public List<Course> filterCourseByDate(Date fromDate, Date toDate) {
+    public List<CountStudentsOnCourse> filterCourseByDate(Date fromDate, Date toDate) {
         LOGGER.debug("filterDeviceByDate({}, {})", fromDate, toDate);
         SqlParameterSource namedParamets = new MapSqlParameterSource().addValue(FROM_DATE, fromDate).addValue(TO_DATE, toDate);
-        List<Course> courses = namedParameterJdbcTemplate.query(filterSql, namedParamets, new CourseRowMapper());
+        List<CountStudentsOnCourse> courses = namedParameterJdbcTemplate.query(filterSql, namedParamets, new CountStudentsOnCourseRowMapper());
         LOGGER.debug("filteredCourses({})");
         return courses;
     }

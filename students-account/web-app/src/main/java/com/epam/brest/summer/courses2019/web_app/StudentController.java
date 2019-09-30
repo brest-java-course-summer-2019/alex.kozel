@@ -92,7 +92,7 @@ public class StudentController {
             return "student";
         } else {
             this.studentService.update(student);
-            return "redirect:/devices";
+            return "redirect:/courses";
         }
     }
 

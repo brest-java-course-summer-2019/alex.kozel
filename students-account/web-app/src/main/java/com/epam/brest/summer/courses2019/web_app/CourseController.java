@@ -57,7 +57,7 @@ public class CourseController {
     }
 
     @GetMapping(value = "/course")
-    public final String gotoAddDevicePage(Model model) throws Exception {
+    public final String gotoAddCoursePage(Model model) throws Exception {
         LOGGER.debug("gotoAddCoursePage({})", model);
         Course course = new Course();
         model.addAttribute("isNew", true);
@@ -66,16 +66,17 @@ public class CourseController {
     }
 
     @PostMapping(value = "/course")
-    public final String addCourse(@Valid Course courseAdd, BindingResult result, Model model)
+    public final String addCourse(@Valid Course course, BindingResult result, Model model)
             throws DataAccessException {
-        LOGGER.debug("postAddCourse({}, {})", courseAdd, result);
-        courseValidator.validate(courseAdd, result);
+        LOGGER.debug("postAddCourse({}, {})", course, result);
+        courseValidator.validate(course, result);
+        course.setCourseDate(course.getCourseDate());
         if(result.hasErrors()) {
-            model.addAttribute("course", courseAdd);
+            model.addAttribute("course", course);
             model.addAttribute("isNew", true );
             return "course";
         } else {
-            courseService.add(courseAdd);
+            courseService.add(course);
             return "redirect:/courses";
         }
 
@@ -156,6 +157,6 @@ public class CourseController {
         Date startDate = simpleDateFormat.parse(fromDate);
         Date endDate = simpleDateFormat.parse(toDate);
         model.addAttribute("courses", courseService.filterCourseByDate(startDate, endDate));
-        return  "devices";
+        return  "courses";
     }
 }

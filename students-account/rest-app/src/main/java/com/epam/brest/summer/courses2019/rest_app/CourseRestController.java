@@ -63,13 +63,13 @@ public class CourseRestController {
         return courseService.add(course);
     }
     @GetMapping(value = "/courses/{fromDate}/{toDate}")
-    public List<Course> filteredCoursesByDate(
+    public List<CountStudentsOnCourse> filteredCoursesByDate(
             @PathVariable(value = "fromDate") String fromDate,
             @PathVariable(value = "toDate") String toDate)
             throws ParseException {
         LOGGER.debug("REST-server filterByDate({} - {})", fromDate, toDate);
         SimpleDateFormat formatDate
-                = new SimpleDateFormat("yyyy-MM-dd",
+                = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy",
                 Locale.US);
         Date startDate = formatDate.parse(fromDate);
         Date endDate = formatDate.parse(toDate);

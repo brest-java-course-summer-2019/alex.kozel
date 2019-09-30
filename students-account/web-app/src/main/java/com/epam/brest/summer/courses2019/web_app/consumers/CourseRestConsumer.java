@@ -60,11 +60,11 @@ public class CourseRestConsumer implements CourseService {
     }
 
     @Override
-    public List<Course> filterCourseByDate(Date fromDate, Date toDate) throws ServerDataAccessExeption{
+    public List<CountStudentsOnCourse> filterCourseByDate(Date fromDate, Date toDate) throws ServerDataAccessExeption{
         LOGGER.debug("REST filter Courses By Date ({}, {})", fromDate, toDate );
         ResponseEntity<List> responseEntity = restTemplate.getForEntity(url + "/" + fromDate + "/" + toDate, List.class);
         LOGGER.debug("REST responseEntity filter Courses By Date ({})", responseEntity );
-        return (List<Course>) responseEntity.getBody();
+        return (List<CountStudentsOnCourse>) responseEntity.getBody();
     }
 
     @Override
