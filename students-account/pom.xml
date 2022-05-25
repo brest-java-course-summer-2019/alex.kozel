@@ -41,7 +41,7 @@
     <java.optimize>true</java.optimize>
     <java.debug>true</java.debug>
 
-    <org.springframework.version>5.1.4.RELEASE</org.springframework.version>
+    <org.springframework.version>5.2.22.RELEASE</org.springframework.version>
     <junit.version>5.2.0</junit.version>
     <logback.version>1.2.3</logback.version>
     <mockito.version>2.23.4</mockito.version>
